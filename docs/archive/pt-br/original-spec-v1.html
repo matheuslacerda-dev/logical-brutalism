@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brutalismo Lógico :: v1.1 :: Design System Spec</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-void: #0A0A0A;
+    --color-amber: #FFB000;
+    --color-surface: #1E1E1E;
+    --color-text: #888888;
+    --color-white: #F0F0F0;
+    --color-error: #FF4444;
+    --color-border: #2A2A2A;
+    --font-struct: 'Inter', sans-serif;
+    --font-code: 'JetBrains Mono', monospace;
+    --radius: 0px;
+    --line-height: 1.6;
+    --text-display: 2.5rem;
+    --text-title: 1.375rem;
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --text-label: 0.75rem;
+    --text-code: 0.875rem;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 1rem;
+    --space-4: 1.5rem;
+    --space-5: 2rem;
+    --space-6: 3rem;
+    --letter-spacing-code: 0.08em;
+    --letter-spacing-struct: normal;
+    --page-width: 900px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { font-size: 16px; background: var(--color-void); }
+
+  body {
+    font-family: var(--font-struct);
+    font-size: var(--text-body);
+    color: var(--color-text);
+    line-height: var(--line-height);
+    background: var(--color-void);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .page {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: var(--space-6) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+    page-break-after: always;
+  }
+
+  .page:last-child { border-bottom: none; }
+
+  /* Header / Meta */
+  .meta-line {
+    font-family: var(--font-code);
+    font-size: var(--text-label);
+    letter-spacing: var(--letter-spacing-code);
+    text-transform: uppercase;
+    color: var(--color-text);
+    margin-bottom: var(--space-6);
+  }
+
+  .meta-line span { color: var(--color-amber); }
+
+  .page-number {
+    font-family: var(--font-code);
+    font-size: var(--text-label);
+    color: var(--color-text);
+    margin-top: var(--space-6);
+    text-align: right;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4 {
+    font-family: var(--font-code);
+    letter-spacing: var(--letter-spacing-code);
+    text-transform: uppercase;
+    color: var(--color-white);
+  }
+
+  h1 {
+    font-size: var(--text-display);
+    line-height: 1.1;
+    margin-bottom: var(--space-3);
+  }
+
+  h2 {
+    font-size: var(--text-title);
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-3);
+  }
+
+  h3 {
+    font-size: var(--text-body);
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-2);
+    color: var(--color-amber);
+  }
+
+  h4 {
+    font-size: var(--text-small);
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-1);
+    color: var(--color-white);
+  }
+
+  p {
+    margin-bottom: var(--space-3);
+    max-width: 70ch;
+  }
+
+  strong {
+    color: var(--color-white);
+    font-weight: 600;
+  }
+
+  em {
+    color: var(--color-amber);
+    font-style: normal;
+  }
+
+  blockquote {
+    border-left: 3px solid var(--color-amber);
+    padding-left: var(--space-3);
+    margin: var(--space-4) 0;
+    font-family: var(--font-code);
+    font-size: var(--text-title);
+    color: var(--color-white);
+    line-height: 1.4;
+  }
+
+  /* Lists */
+  ul, ol {
+    margin-bottom: var(--space-3);
+    padding-left: var(--space-4);
+  }
+
+  li { margin-bottom: var(--space-2); }
+
+  /* Code / Tokens */
+  code, .token {
+    font-family: var(--font-code);
+    font-size: var(--text-code);
+    background: var(--color-surface);
+    padding: var(--space-1) var(--space-2);
+    color: var(--color-white);
+    border-radius: var(--radius);
+  }
+
+  pre {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-3) var(--space-4);
+    margin: var(--space-3) 0 var(--space-4);
+    overflow-x: auto;
+  }
+
+  pre code {
+    background: transparent;
+    padding: 0;
+    font-size: var(--text-code);
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  pre .comment { color: #555; }
+  pre .keyword { color: var(--color-amber); }
+  pre .string { color: var(--color-white); }
+  pre .tag { color: var(--color-error); }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-3) 0 var(--space-4);
+    font-size: var(--text-small);
+  }
+
+  th, td {
+    text-align: left;
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+  }
+
+  th {
+    font-family: var(--font-code);
+    font-size: var(--text-label);
+    letter-spacing: var(--letter-spacing-code);
+    text-transform: uppercase;
+    color: var(--color-amber);
+    background: var(--color-surface);
+  }
+
+  td {
+    font-family: var(--font-struct);
+    color: var(--color-text);
+  }
+
+  td code {
+    font-size: var(--text-label);
+    padding: var(--space-1);
+  }
+
+  /* Color swatches */
+  .swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: var(--space-2);
+    border: 1px solid var(--color-border);
+    vertical-align: middle;
+  }
+
+  /* Components demo boxes */
+  .demo-box {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-3) var(--space-4);
+    margin: var(--space-3) 0 var(--space-4);
+  }
+
+  .demo-label {
+    font-family: var(--font-code);
+    font-size: var(--text-label);
+    letter-spacing: var(--letter-spacing-code);
+    text-transform: uppercase;
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+  }
+
+  .do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    margin: var(--space-3) 0;
+  }
+
+  .do, .dont {
+    font-family: var(--font-code);
+    font-size: var(--text-small);
+    padding: var(--space-2) var(--space-3);
+    border-left: 3px solid;
+  }
+
+  .do { border-color: var(--color-amber); color: var(--color-white); }
+  .dont { border-color: var(--color-error); color: var(--color-error); }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-code);
+    font-size: var(--text-label);
+    letter-spacing: var(--letter-spacing-code);
+    text-transform: uppercase;
+    border-radius: var(--radius);
+    padding: var(--space-2) var(--space-4);
+    min-height: 44px;
+    min-width: 44px;
+    cursor: pointer;
+    border: none;
+    margin-right: var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+
+  .btn-primary {
+    background: var(--color-amber);
+    color: var(--color-void);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-amber);
+    border: 1px solid var(--color-amber);
+  }
+
+  .btn-disabled {
+    background: transparent;
+    color: #444;
+    border: 1px solid #444;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .error-box {
+    border-left: 3px solid var(--color-error);
+    background: var(--color-surface);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius);
+    margin: var(--space-3) 0;
+  }
+
+  .error-code {
+    font-family: var(--font-code);
+    font-size: var(--text-label);
+    color: var(--color-error);
+    margin-bottom: var(--space-2);
+  }
+
+  .error-title {
+    font-family: var(--font-code);
+    font-size: var(--text-body);
+    color: var(--color-white);
+    margin-bottom: var(--space-2);
+  }
+
+  .error-body {
+    font-family: var(--font-struct);
+    font-size: var(--text-body);
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+  }
+
+  .error-action {
+    font-family: var(--font-code);
+    font-size: var(--text-label);
+    color: var(--color-amber);
+  }
+
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-3) var(--space-4);
+    margin: var(--space-3) 0;
+  }
+
+  .card-label {
+    font-family: var(--font-code);
+    font-size: var(--text-label);
+    letter-spacing: var(--letter-spacing-code);
+    text-transform: uppercase;
+    color: var(--color-text);
+    margin-bottom: var(--space-1);
+  }
+
+  .card-value {
+    font-family: var(--font-code);
+    font-size: var(--text-title);
+    color: var(--color-white);
+    margin-bottom: var(--space-1);
+  }
+
+  .card-meta {
+    font-family: var(--font-code);
+    font-size: var(--text-label);
+    color: #444;
+  }
+
+  .card-action {
+    font-family: var(--font-code);
+    font-size: var(--text-label);
+    color: var(--color-amber);
+    margin-top: var(--space-2);
+  }
+
+  .manifesto-box {
+    border: 1px solid var(--color-border);
+    padding: var(--space-4);
+    margin: var(--space-4) 0;
+  }
+
+  .ascii-box {
+    font-family: var(--font-code);
+    font-size: var(--text-small);
+    line-height: 1.4;
+    color: var(--color-white);
+    white-space: pre;
+    text-align: center;
+    margin: var(--space-5) 0;
+  }
+
+  /* Print */
+  @media print {
+    html { font-size: 14px; }
+    .page {
+      page-break-after: always;
+      border-bottom: 1px solid #333;
+      max-width: 100%;
+    }
+    body { background: #fff; color: #000; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--color-void); }
+  ::-webkit-scrollbar-thumb { background: var(--color-surface); border-radius: 0; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-border); }
+
+  .cover {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 60px; /* espaço pro footer */
+  }
+
+  .cover-rule {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 36px;
+    width: 3px;
+    background: var(--color-amber);
+  }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-5);
+    font-family: var(--font-code);
+    font-size: var(--text-label);
+    letter-spacing: var(--letter-spacing-code);
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+
+  [data-theme="infinity-white"] {
+    --color-void: #E3E3E3;
+    --color-amber: #B35900;
+    --color-surface: #CCCCCC;
+    --color-text: #4D4D4D;
+    --color-white: #0A0A0A;
+    --color-error: #BE123C;
+  }
+
+  #theme-toggle {
+    font-family: var(--font-code);
+    font-size: var(--text-label);
+    letter-spacing: var(--letter-spacing-code);
+    text-transform: uppercase;
+    border: 1px solid var(--color-amber);
+    background: var(--color-void);
+    color: var(--color-amber);
+    border-radius: 0;
+    padding: 8px 16px;
+    position: fixed;
+    bottom: 48px;
+    right: 24px;
+    z-index: 999;
+    transition: none;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<style>
+/* LOGICAL BRUTALISM: NAV HEADER */
+.lb-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--color-surface, #1E1E1E);
+  padding: 24px;
+  font-family: var(--font-code, 'JetBrains Mono', monospace);
+  text-transform: uppercase;
+  background: var(--color-void, #0A0A0A);
+}
+.lb-nav-logo {
+  color: var(--color-white, #F0F0F0);
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+}
+.lb-nav-links {
+  display: flex;
+  gap: 2rem;
+}
+.lb-nav-link {
+  color: var(--color-text, #888888);
+  text-decoration: none;
+  transition: none !important;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+/* AXIOMA P-06 E ANTI-SHIFT: BRACKETS TRANSPARENTES */
+.lb-nav-link::before { content: "[ "; color: transparent; }
+.lb-nav-link::after { content: " ]"; color: transparent; }
+.lb-nav-link:hover { color: var(--color-amber, #FFB000); }
+.lb-nav-link:hover::before, .lb-nav-link.active::before { color: var(--color-amber, #FFB000); }
+.lb-nav-link:hover::after, .lb-nav-link.active::after { color: var(--color-amber, #FFB000); }
+.lb-nav-link.active { color: var(--color-amber, #FFB000); }
+
+/* Para suprimir anomalias do layout global do Tailwind (no market-comparison.html) */
+nav.lb-nav { width: 100%; box-sizing: border-box; }
+</style>
+
+<nav class="lb-nav">
+  
+<!-- HISTORICAL BANNER -->
+<div style="background: var(--color-error); color: var(--color-white); padding: 12px; text-align: center; font-family: var(--font-code); font-weight: bold; text-transform: uppercase; z-index: 9999; position: relative; letter-spacing: 0.05em;">
+  ORIGINAL DOCUMENT (PT-BR) - For historical reference only. See <a href="../../../index.html" style="color: var(--color-white); text-decoration: underline;">current documentation</a> for the latest version.
+</div>
+  <a href="./index.html" class="lb-nav-logo">BRUTALISMO_LÓGICO</a>
+  <div class="lb-nav-links">
+    <a href="./index.html" class="lb-nav-link active">DOCUMENTO VIVO</a>
+    <a href="./showcase/components.html" class="lb-nav-link">UI COMPONENTS</a>
+    <a href="./showcase/data-components.html" class="lb-nav-link">DATA DENSITY</a>
+    <a href="./showcase/market-comparison.html" class="lb-nav-link">MERCADO</a>
+    <a href="./showcase/showcase-blind-test.html" class="lb-nav-link">TESTE CEGO</a>
+  </div>
+</nav>
+
+
+<!-- PÁGINA 01: CAPA -->
+<div class="page cover">
+  <div class="cover-rule"></div>
+
+  <div class="meta-line">Especificação Oficial :: Sistema de Design</div>
+  <h1 style="font-size: 3.5rem; margin-bottom: var(--space-2);">BRUTALISMO<br>LÓGICO</h1>
+  <p style="font-family: var(--font-code); font-size: var(--text-title); color: var(--color-white); margin-bottom: var(--space-4);">
+    O que não resolve, não existe.
+  </p>
+  <p style="max-width: 55ch; margin-bottom: var(--space-5);">
+    Um sistema de design para contextos de alta densidade de informação. Cada decisão visual justificada por função.
+  </p>
+  <div style="font-family: var(--font-code); font-size: var(--text-label); letter-spacing: var(--letter-spacing-code); text-transform: uppercase; line-height: 2;">
+    <div><span>Autor</span> :: Matheus Lacerda Ferreira</div>
+    <div><span>Origem</span> :: Brasil :: Ilha Solteira</div>
+    <div><span>Destino</span> :: Cork, Irlanda :: MTU</div>
+    <div><span>Versão</span> :: 1.2.0 :: 2026</div>
+    <div><span>Status</span> :: Documento Vivo</div>
+  </div>
+  <div class="page-number">01</div>
+
+  <div class="cover-footer">
+    <span>BRUTALISMO LÓGICO :: v1.1.1</span>
+    <span>Matheus Lacerda Ferreira :: 2026</span>
+  </div>
+</div>
+
+<!-- PÁGINA 02: ÍNDICE -->
+<div class="page">
+  <div class="meta-line">Brutalismo Logico :: Design System Spec :: v1.1</div>
+  <h2 style="margin-top: 0; font-size: var(--text-display);">// Índice</h2>
+  <div style="font-family: var(--font-code); font-size: var(--text-body); line-height: 2.2; margin-top: var(--space-4);">
+    <div>[01] ... Tese Central</div>
+    <div>[02] ... Fundação Filosófica</div>
+    <div>[03] ... Sistema de Cores</div>
+    <div>[04] ... Tipografia e Espaçamento</div>
+    <div>[05] ... Princípios Gerativos</div>
+    <div>[06] ... Componentes</div>
+    <div>[07] ... Acessibilidade</div>
+    <div>[08] ... Critério de Avaliação</div>
+    <div>[09] ... Tensões Não Resolvidas</div>
+    <div>[10] ... Posicionamento no Campo</div>
+    <div>[11] ... Quando Não Usar</div>
+    <div>[12] ... Referências</div>
+    <div>[13] ... Manifesto</div>
+    <div>[14] ... Changelog</div>
+  </div>
+  <div class="page-number">02</div>
+</div>
+
+<!-- PÁGINA 03: TESE CENTRAL -->
+<div class="page">
+  <div class="meta-line">// Seção 01</div>
+  <h1>Tese Central</h1>
+  <p>
+    Brutalismo Lógico é um sistema de design para contextos de alta densidade de informação, baseado na premissa de que <strong>verdade técnica é uma forma legítima de estética em software</strong>.
+  </p>
+  <p>
+    Assim como a arquitetura brutalista expõe o concreto e recusa revestimento decorativo sobre a estrutura real, o Brutalismo Lógico expõe a lógica do sistema: sem camadas visuais que contradigam a função, sem ornamento que não carregue informação, sem elemento que não justifique sua presença com utilidade.
+  </p>
+  <p>
+    Isso não é ausência de design. É design com <strong>custo de justificativa máximo</strong>. Cada decisão visual precisa responder a uma pergunta funcional antes de existir.
+  </p>
+  <blockquote>"O que não resolve, não existe."</blockquote>
+
+  <h3>Distinção Crítica</h3>
+  <p>No minimalismo, remove-se até algo parecer elegante. No Brutalismo Lógico, remove-se até só restar o que resolve. O critério é funcional, não estético.</p>
+
+  <table>
+    <tr>
+      <th>Abordagem</th>
+      <th>Critério</th>
+      <th>Resultado</th>
+    </tr>
+    <tr>
+      <td>Minimalismo</td>
+      <td>Remove até parecer elegante</td>
+      <td>Estética pela subtração</td>
+    </tr>
+    <tr>
+      <td>Brutalismo Web</td>
+      <td>Remove até parecer bruto</td>
+      <td>Feiura como statement</td>
+    </tr>
+    <tr>
+      <td><strong>Brutalismo Lógico</strong></td>
+      <td><strong>Remove até só restar função</strong></td>
+      <td><strong>Verdade estrutural</strong></td>
+    </tr>
+  </table>
+
+  <h3>Nicho de Aplicação</h3>
+  <p>Brutalismo Lógico não é um sistema universal. É otimizado para contextos onde a máxima densidade de informação no menor espaço de tela é requisito: <strong>IDEs, dashboards empresariais, ferramentas de monitoramento, sistemas internos, documentação técnica</strong>. Onde informação é o produto, Brutalismo Lógico é o sistema.</p>
+  <div class="page-number">03</div>
+</div>
+
+<!-- PÁGINA 04: FUNDAÇÃO FILOSÓFICA -->
+<div class="page">
+  <div class="meta-line">// Seção 02</div>
+  <h1>Fundação Filosófica</h1>
+  <p>Três axiomas fundamentam todas as decisões do sistema. São premissas derivadas de como humanos processam informação, não de preferência estética.</p>
+
+  <h3>Axioma I :: Função Precede Forma</h3>
+  <p>Um elemento visual existe para transmitir informação ou guiar ação. Se não faz nenhum dos dois, é <strong>ruído cognitivo</strong>. Norman demonstrou que o cérebro processa affordances antes de estética: o usuário pergunta <em>o que isso faz</em> antes de perguntar <em>se é bonito</em>. Beleza é consequência de função bem executada, nunca objetivo independente.</p>
+  <p style="font-family: var(--font-code); font-size: var(--text-label); color: var(--color-text);">ref: Norman, The Design of Everyday Things: affordance precede signifier.</p>
+
+  <h3>Axioma II :: Estrutura Exposta</h3>
+  <p>O sistema não esconde como funciona. A lógica de hierarquia, estado e comportamento deve ser imediatamente legível na superfície visual, sem instrução adicional. Kahneman mostrou que o Sistema 1 processa padrões visuais antes de qualquer leitura consciente. Se a estrutura não é óbvia em menos de 100ms, o design falhou.</p>
+  <p style="font-family: var(--font-code); font-size: var(--text-label); color: var(--color-text);">ref: Kahneman, Thinking Fast and Slow: System 1 processa padrão antes de conteúdo.</p>
+
+  <h3>Axioma III :: Restrição Como Ferramenta</h3>
+  <p>Menos opções produzem mais consistência e menor carga cognitiva. Uma paleta de 6 tokens com regras rígidas de uso é mais poderosa que 20 cores sem critério. A restrição não limita o design: ela define o sistema e reduz o custo de decisão para quem o implementa.</p>
+  <p style="font-family: var(--font-code); font-size: var(--text-label); color: var(--color-text);">ref: Alexander, Notes on the Synthesis of Form: forma é resolução de forças conflitantes.</p>
+  <div class="page-number">04</div>
+</div>
+
+<!-- PÁGINA 05: SISTEMA DE CORES -->
+<div class="page">
+  <div class="meta-line">// Seção 03</div>
+  <h1>Sistema de Cores</h1>
+  <p>A paleta é um sistema de hierarquia de atenção. Cada token mapeia um nível de urgência e função específica. Usar um token fora do seu papel quebra a lógica do sistema.</p>
+
+  <h3>Tokens</h3>
+  <table>
+    <tr>
+      <th>Token</th>
+      <th>Hex</th>
+      <th>Papel</th>
+      <th>Regra</th>
+    </tr>
+    <tr>
+      <td><code>--color-void</code></td>
+      <td><span class="swatch" style="background:#0A0A0A"></span>#0A0A0A</td>
+      <td>Primary Background</td>
+      <td>Fundação de todos os layouts. Representa ausência de ruído visual. Nunca use como cor de texto ou elemento interativo.</td>
+    </tr>
+    <tr>
+      <td><code>--color-amber</code></td>
+      <td><span class="swatch" style="background:#FFB000"></span>#FFB000</td>
+      <td>Action Accent</td>
+      <td>Único acento de ação. Reservado para estados ativos, CTAs primários e headers. Referência histórica: terminais de fósforo P3 dos anos 1970. Contraste 10.81:1 sobre void, passa WCAG AAA. Regra: <strong>um elemento âmbar por tela</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>--color-surface</code></td>
+      <td><span class="swatch" style="background:#1E1E1E"></span>#1E1E1E</td>
+      <td>Component Boundary</td>
+      <td>Separação de contexto, bordas de card, backgrounds secundários. Nunca para texto. Nunca para elementos interativos.</td>
+    </tr>
+    <tr>
+      <td><code>--color-text</code></td>
+      <td><span class="swatch" style="background:#888888"></span>#888888</td>
+      <td>Default Text</td>
+      <td>Cor padrão de leitura contínua. Contraste 5.74:1 sobre void, passa WCAG AA. Não use branco para corpo de texto: contraste excessivo causa fadiga visual.</td>
+    </tr>
+    <tr>
+      <td><code>--color-white</code></td>
+      <td><span class="swatch" style="background:#F0F0F0"></span>#F0F0F0</td>
+      <td>Critical Emphasis</td>
+      <td>Títulos, dados críticos, ênfase máxima. Contraste 18.1:1 sobre void, passa WCAG AAA. Use com parcimônia.</td>
+    </tr>
+    <tr>
+      <td><code>--color-error</code></td>
+      <td><span class="swatch" style="background:#FF4444"></span>#FF4444</td>
+      <td>Error State</td>
+      <td>Uso exclusivo: erros, alertas críticos, dados inválidos. Nunca decorativo. Justificativa: vermelho ativa Sistema 1 de Kahneman para leitura imediata sem esforço deliberado. Contraste 5.6:1 sobre void, passa WCAG AA.</td>
+    </tr>
+  </table>
+
+  <h3 style="margin-top: var(--space-5);">Tema 2 :: Infinity-White (Claro)</h3>
+  <p>Inversão paramétrica canônica para luminosidade externa. A mesma hierarquia matemática inverte as urgências de sinal, garantindo densidade sem reflexo.</p>
+  <table>
+    <tr>
+      <th>Token</th>
+      <th>Nome</th>
+      <th>Hex</th>
+      <th>Justificativa</th>
+    </tr>
+    <tr>
+      <td><code>--color-void</code></td>
+      <td>Industrial Concrete</td>
+      <td><span class="swatch" style="background:#E3E3E3; border-color:#CCCCCC"></span>#E3E3E3</td>
+      <td>Primary background — minimiza tensão ocular na luz solar.</td>
+    </tr>
+    <tr>
+      <td><code>--color-amber</code></td>
+      <td>Oxidized Amber</td>
+      <td><span class="swatch" style="background:#B35900; border-color:#CCCCCC"></span>#B35900</td>
+      <td>Action accent — regulado para contraste AAA.</td>
+    </tr>
+    <tr>
+      <td><code>--color-surface</code></td>
+      <td>Drafting Board</td>
+      <td><span class="swatch" style="background:#CCCCCC; border-color:#CCCCCC"></span>#CCCCCC</td>
+      <td>Component boundary — demarcação estrutural sólida.</td>
+    </tr>
+    <tr>
+      <td><code>--color-text</code></td>
+      <td>Graphite HB</td>
+      <td><span class="swatch" style="background:#4D4D4D; border-color:#CCCCCC"></span>#4D4D4D</td>
+      <td>Default text — leitura imersiva.</td>
+    </tr>
+    <tr>
+      <td><code>--color-white</code></td>
+      <td>Absolute Void</td>
+      <td><span class="swatch" style="background:#0A0A0A; border-color:#CCCCCC"></span>#0A0A0A</td>
+      <td>Critical emphasis — inverte o pólo de urgência e dados densos.</td>
+    </tr>
+    <tr>
+      <td><code>--color-error</code></td>
+      <td>Emergency Stop</td>
+      <td><span class="swatch" style="background:#BE123C; border-color:#CCCCCC"></span>#BE123C</td>
+      <td>Error state — urgência com calibramento AAA.</td>
+    </tr>
+  </table>
+  <div class="page-number">05</div>
+</div>
+
+<!-- PÁGINA 06: HIERARQUIA + CSS -->
+<div class="page">
+  <div class="meta-line">Brutalismo Logico :: Design System Spec :: v1.1</div>
+
+  <h3>Hierarquia de Atenção</h3>
+  <table>
+    <tr>
+      <th>Situação</th>
+      <th>Token</th>
+      <th>Justificativa</th>
+    </tr>
+    <tr>
+      <td>Ação primária disponível</td>
+      <td><code>--color-amber</code></td>
+      <td>Sistema pronto para executar</td>
+    </tr>
+    <tr>
+      <td>Leitura contínua de dado</td>
+      <td><code>--color-text</code></td>
+      <td>Informação neutra, sem urgência</td>
+    </tr>
+    <tr>
+      <td>Título ou dado crítico</td>
+      <td><code>--color-white</code></td>
+      <td>Máxima atenção sem ação imediata</td>
+    </tr>
+    <tr>
+      <td>Separação de contexto</td>
+      <td><code>--color-surface</code></td>
+      <td>Estrutura visual, não informação</td>
+    </tr>
+    <tr>
+      <td>Erro ou estado inválido</td>
+      <td><code>--color-error</code></td>
+      <td>Ativa System 1 para leitura imediata</td>
+    </tr>
+  </table>
+
+  <h3>Referência CSS</h3>
+  <pre><code><span class="keyword">:root</span> {
+  <span class="string">--color-void</span>: <span class="string">#0A0A0A</span>;
+  <span class="string">--color-amber</span>: <span class="string">#FFB000</span>; <span class="comment">/* fósforo P3, 1970s */</span>
+  <span class="string">--color-surface</span>: <span class="string">#1E1E1E</span>;
+  <span class="string">--color-text</span>: <span class="string">#888888</span>;
+  <span class="string">--color-white</span>: <span class="string">#F0F0F0</span>;
+  <span class="string">--color-error</span>: <span class="string">#FF4444</span>;
+}
+
+<span class="keyword">[data-theme="infinity-white"]</span> {
+  <span class="string">--color-void</span>: <span class="string">#E3E3E3</span>;
+  <span class="string">--color-amber</span>: <span class="string">#B35900</span>;
+  <span class="string">--color-surface</span>: <span class="string">#CCCCCC</span>;
+  <span class="string">--color-text</span>: <span class="string">#4D4D4D</span>;
+  <span class="string">--color-white</span>: <span class="string">#0A0A0A</span>;
+  <span class="string">--color-error</span>: <span class="string">#BE123C</span>;
+}</code></pre>
+  <div class="page-number">06</div>
+</div>
+
+<!-- PÁGINA 07: TIPOGRAFIA E ESPAÇAMENTO -->
+<div class="page">
+  <div class="meta-line">// Seção 04</div>
+  <h1>Tipografia e Espaçamento</h1>
+  <p>Duas famílias. Papéis funcionais distintos. Escala em rem com base de 16px para respeitar preferências de tamanho do usuário no navegador.</p>
+
+  <h3>Inter :: Camada Humana</h3>
+  <p>Projetada para leitura em telas de alta densidade. Métricas otimizadas para legibilidade em tamanho pequeno. Use para <strong>todo conteúdo que o usuário precisa ler, não escanear</strong>.</p>
+
+  <h3>JetBrains Mono :: Camada Lógica</h3>
+  <p>Projetada para parsing de código: espaçamento monoespaçado, ligaduras lógicas, clareza máxima em strings curtas. Use onde o conteúdo é dado bruto do sistema: <strong>labels, status, identificadores, valores, timestamps, código</strong>.</p>
+
+  <h3>Escala Tipográfica</h3>
+  <table>
+    <tr>
+      <th>Token</th>
+      <th>Família</th>
+      <th>rem</th>
+      <th>px</th>
+      <th>Uso</th>
+    </tr>
+    <tr>
+      <td><code>--text-display</code></td>
+      <td>JetBrains Mono</td>
+      <td>2.5rem</td>
+      <td>40px</td>
+      <td>Títulos de página</td>
+    </tr>
+    <tr>
+      <td><code>--text-title</code></td>
+      <td>JetBrains Mono</td>
+      <td>1.375rem</td>
+      <td>22px</td>
+      <td>Títulos de seção</td>
+    </tr>
+    <tr>
+      <td><code>--text-body</code></td>
+      <td>Inter</td>
+      <td>1rem</td>
+      <td>16px</td>
+      <td>Corpo — mínimo WCAG AA</td>
+    </tr>
+    <tr>
+      <td><code>--text-small</code></td>
+      <td>Inter</td>
+      <td>0.875rem</td>
+      <td>14px</td>
+      <td>Notas, captions, metadados</td>
+    </tr>
+    <tr>
+      <td><code>--text-label</code></td>
+      <td>JetBrains Mono</td>
+      <td>0.75rem</td>
+      <td>12px</td>
+      <td>Labels de sistema — mínimo absoluto</td>
+    </tr>
+    <tr>
+      <td><code>--text-code</code></td>
+      <td>JetBrains Mono</td>
+      <td>0.875rem</td>
+      <td>14px</td>
+      <td>Blocos de código, valores</td>
+    </tr>
+  </table>
+  <div class="page-number">07</div>
+</div>
+
+<!-- PÁGINA 08: TOKENS DE ESPAÇAMENTO + CSS COMPLETA -->
+<div class="page">
+  <div class="meta-line">Brutalismo Logico :: Design System Spec :: v1.1</div>
+
+  <h3>Tokens de Espaçamento e Letra</h3>
+  <table>
+    <tr>
+      <th>Token</th>
+      <th>Valor</th>
+      <th>Uso</th>
+    </tr>
+    <tr>
+      <td><code>--space-1</code></td>
+      <td>0.25rem</td>
+      <td>Separação mínima, elementos do mesmo grupo</td>
+    </tr>
+    <tr>
+      <td><code>--space-2</code></td>
+      <td>0.5rem</td>
+      <td>Padding interno de componente</td>
+    </tr>
+    <tr>
+      <td><code>--space-3</code></td>
+      <td>1rem</td>
+      <td>Separação entre elementos relacionados</td>
+    </tr>
+    <tr>
+      <td><code>--space-4</code></td>
+      <td>1.5rem</td>
+      <td>Separação entre seções do mesmo contexto</td>
+    </tr>
+    <tr>
+      <td><code>--space-5</code></td>
+      <td>2rem</td>
+      <td>Separação entre contextos distintos</td>
+    </tr>
+    <tr>
+      <td><code>--space-6</code></td>
+      <td>3rem</td>
+      <td>Separação máxima, seções de página</td>
+    </tr>
+    <tr>
+      <td><code>--letter-spacing-code</code></td>
+      <td>0.08em</td>
+      <td>JetBrains Mono em labels e botões</td>
+    </tr>
+    <tr>
+      <td><code>--letter-spacing-struct</code></td>
+      <td>normal</td>
+      <td>Inter em corpo de texto</td>
+    </tr>
+  </table>
+
+  <h3>Referência CSS Completa</h3>
+  <pre><code><span class="keyword">:root</span> {
+  <span class="string">--font-struct</span>: <span class="string">'Inter'</span>, sans-serif;
+  <span class="string">--font-code</span>: <span class="string">'JetBrains Mono'</span>, monospace;
+  <span class="string">--radius</span>: <span class="string">0px</span>;
+  <span class="string">--line-height</span>: <span class="string">1.6</span>;
+  <span class="string">--text-display</span>: <span class="string">2.5rem</span>;
+  <span class="string">--text-title</span>: <span class="string">1.375rem</span>;
+  <span class="string">--text-body</span>: <span class="string">1rem</span>;
+  <span class="string">--text-small</span>: <span class="string">0.875rem</span>;
+  <span class="string">--text-label</span>: <span class="string">0.75rem</span>;
+  <span class="string">--text-code</span>: <span class="string">0.875rem</span>;
+  <span class="string">--space-1</span>: <span class="string">0.25rem</span>; <span class="string">--space-2</span>: <span class="string">0.5rem</span>;
+  <span class="string">--space-3</span>: <span class="string">1rem</span>; <span class="string">--space-4</span>: <span class="string">1.5rem</span>;
+  <span class="string">--space-5</span>: <span class="string">2rem</span>; <span class="string">--space-6</span>: <span class="string">3rem</span>;
+  <span class="string">--letter-spacing-code</span>: <span class="string">0.08em</span>;
+  <span class="string">--letter-spacing-struct</span>: <span class="string">normal</span>;
+}
+<span class="keyword">html</span> { <span class="string">font-size</span>: <span class="string">16px</span>; }</code></pre>
+  <div class="page-number">08</div>
+</div>
+
+<!-- PÁGINA 09: PRINCÍPIOS GERATIVOS P1 -->
+<div class="page">
+  <div class="meta-line">// Seção 05</div>
+  <h1>Princípios Gerativos</h1>
+  <p>Princípios gerativos dizem o que fazer e quando. Qualquer decisão nova pode ser avaliada contra eles sem consultar o autor.</p>
+
+  <h3>P-01 :: Cor Segue Estado</h3>
+  <p>Antes de escolher uma cor, identifique o estado funcional do elemento. A cor é consequência do estado, nunca uma escolha independente.</p>
+  <p><strong>Quando:</strong> Novo elemento visual.<br>
+  <strong>Como:</strong> 1. Defina o estado: ativo, inativo, neutro, erro, crítico. 2. Consulte a tabela de hierarquia de atenção. 3. Aplique o token.</p>
+
+  <h3>P-02 :: Ângulo Como Compromisso</h3>
+  <p>Bordas de 90 graus declaram que o sistema não suaviza a realidade. Exceção permitida: indicadores de progresso circular, onde a forma carrega significado funcional distinto.</p>
+  <p><strong>Quando:</strong> Todo container ou elemento com borda.<br>
+  <strong>Como:</strong> <code>border-radius: 0</code> via <code>--radius</code>. Exceções exigem justificativa funcional documentada.</p>
+
+  <h3>P-03 :: Mono Para Máquina, Sans Para Humano</h3>
+  <p>JetBrains Mono é a voz do sistema: dados gerados automaticamente, identificadores, timestamps, status, código. Inter é a voz do conteúdo: texto escrito para ser lido. A distinção é semântica, não estética.</p>
+  <p><strong>Quando:</strong> Todo elemento tipográfico.<br>
+  <strong>Como:</strong> Dado gerado pelo sistema: JetBrains Mono. Conteúdo para o usuário: Inter.</p>
+
+  <h3>P-04 :: Âmbar Uma Vez Por Tela</h3>
+  <p>O acento âmbar é o único elemento que compete com o fundo escuro por atenção máxima. Se múltiplos elementos são âmbar simultaneamente, o sinal perde força e a hierarquia colapsa.</p>
+  <p><strong>Quando:</strong> Ao usar <code>--color-amber</code>.<br>
+  <strong>Como:</strong> Verifique se há outro elemento âmbar ativo na mesma tela. Se sim, um deles tem a função errada.</p>
+  <div class="page-number">09</div>
+</div>
+
+<!-- PÁGINA 10: PRINCÍPIOS GERATIVOS P2 -->
+<div class="page">
+  <div class="meta-line">Brutalismo Logico :: Design System Spec :: v1.1</div>
+
+  <h3>P-05 :: Espaço É Silêncio</h3>
+  <p>Espaçamento comunica estrutura: elementos próximos pertencem ao mesmo contexto, elementos distantes pertencem a contextos distintos. Use os tokens de espaçamento para comunicar relação lógica, não para preencher espaço vazio.</p>
+  <p><strong>Quando:</strong> Posicionamento de quaisquer dois elementos.<br>
+  <strong>Como:</strong> Mesmo contexto: <code>--space-1</code> a <code>--space-3</code>. Contextos distintos: <code>--space-4</code> a <code>--space-6</code>.</p>
+
+  <h3>P-06 :: Feedback Imediato e Honesto</h3>
+  <p>Toda ação do usuário exige resposta visual imediata via mudança de estado. Não há transições suaves: há estados discretos. Feedback desonesto, como indicar sucesso antes de confirmação do servidor, é falha de integridade do sistema.</p>
+  <p><strong>Quando:</strong> Todo elemento interativo.<br>
+  <strong>Como:</strong> Defina todos os estados: default, hover, active, focus, disabled, loading, error. Nenhum estado sem resposta visual.</p>
+
+  <h3>P-07 :: ASCII Antes de Ícone</h3>
+  <p>Ícones introduzem dependência externa e requerem aria-label para acessibilidade. ASCII é texto puro: zero overhead, renderização universal. Use ícones apenas quando o símbolo é universalmente reconhecível e ASCII não consegue representar com clareza equivalente.</p>
+  <p><strong>Quando:</strong> Ao considerar adicionar um ícone.<br>
+  <strong>Como:</strong> Tente ASCII primeiro. Se usar ícone, sempre inclua aria-label funcional.</p>
+  <div class="page-number">10</div>
+</div>
+
+<!-- PÁGINA 11: COMPONENTE BOTÃO -->
+<div class="page">
+  <div class="meta-line">// Seção 06</div>
+  <h1>Componentes</h1>
+
+  <h3>Componente 01 :: Botão</h3>
+  <p>O botão é onde o usuário executa. Ausência de transição não é negligência: é declaração de que o sistema executa sem hesitar. Feedback via mudança de estado, não via animação.</p>
+
+  <table>
+    <tr>
+      <th>Estado</th>
+      <th>BG</th>
+      <th>Texto</th>
+      <th>Borda</th>
+      <th>Cursor</th>
+    </tr>
+    <tr>
+      <td>Primário</td>
+      <td><span class="swatch" style="background:#FFB000"></span>#FFB000</td>
+      <td>#0A0A0A</td>
+      <td>none</td>
+      <td>pointer</td>
+    </tr>
+    <tr>
+      <td>Hover</td>
+      <td><span class="swatch" style="background:#CC8E00"></span>#CC8E00</td>
+      <td>#0A0A0A</td>
+      <td>none</td>
+      <td>pointer</td>
+    </tr>
+    <tr>
+      <td>Active</td>
+      <td><span class="swatch" style="background:#996B00"></span>#996B00</td>
+      <td>#0A0A0A</td>
+      <td>none</td>
+      <td>pointer</td>
+    </tr>
+    <tr>
+      <td>Focus</td>
+      <td><span class="swatch" style="background:#FFB000"></span>#FFB000</td>
+      <td>#0A0A0A</td>
+      <td>2px offset amber</td>
+      <td>pointer</td>
+    </tr>
+    <tr>
+      <td>Secundário</td>
+      <td>transparent</td>
+      <td>#FFB000</td>
+      <td>1px #FFB000</td>
+      <td>pointer</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>transparent</td>
+      <td>#444444</td>
+      <td>1px #444444</td>
+      <td>not-allowed</td>
+    </tr>
+    <tr>
+      <td>Loading</td>
+      <td><span class="swatch" style="background:#1E1E1E"></span>#1E1E1E</td>
+      <td>#888888</td>
+      <td>none</td>
+      <td>wait</td>
+    </tr>
+  </table>
+
+  <div class="demo-box">
+    <div class="demo-label">Demonstração</div>
+    <button class="btn btn-primary">Executar</button>
+    <button class="btn btn-secondary">Cancelar</button>
+    <button class="btn btn-disabled" disabled>Desabilitado</button>
+  </div>
+
+  <pre><code><span class="keyword">.btn</span> {
+  <span class="string">font-family</span>: <span class="keyword">var</span>(--font-code);
+  <span class="string">font-size</span>: <span class="keyword">var</span>(--text-label);
+  <span class="string">letter-spacing</span>: <span class="keyword">var</span>(--letter-spacing-code);
+  <span class="string">text-transform</span>: uppercase;
+  <span class="string">border-radius</span>: <span class="keyword">var</span>(--radius);
+  <span class="string">padding</span>: <span class="keyword">var</span>(--space-2) <span class="keyword">var</span>(--space-4);
+  <span class="string">min-height</span>: 44px;
+  <span class="string">min-width</span>: 44px;
+  <span class="string">cursor</span>: pointer;
+  <span class="string">transition</span>: none;
+}</code></pre>
+
+  <div class="do-dont">
+    <div class="do">[DO] Use --color-amber apenas no CTA primário da tela</div>
+    <div class="dont">[DONT] Dois botões primários âmbar na mesma tela</div>
+    <div class="do">[DO] Defina min-height: 44px para touch targets</div>
+    <div class="dont">[DONT] Usar transition: all — dilui o princípio de estado discreto</div>
+    <div class="do">[DO] Use transition: none — estados são discretos</div>
+    <div class="dont">[DONT] Remover o estado :focus-visible — viola acessibilidade</div>
+    <div class="do">[DO] Substitua o label por [...] no estado loading</div>
+    <div class="dont">[DONT] Arredondar bordas — viola P-02</div>
+  </div>
+  <div class="page-number">11</div>
+</div>
+
+<!-- PÁGINA 12: ESTADO DE ERRO -->
+<div class="page">
+  <div class="meta-line">Brutalismo Logico :: Design System Spec :: v1.1</div>
+
+  <h3>Componente 02 :: Estado de Erro</h3>
+  <p>Erro é a situação de máxima honestidade do sistema. Quatro camadas obrigatórias derivadas de Norman: <strong>o que falhou, por que falhou, onde falhou, o que fazer</strong>.</p>
+
+  <table>
+    <tr>
+      <th>Camada</th>
+      <th>Conteúdo</th>
+      <th>Fonte</th>
+      <th>Cor</th>
+    </tr>
+    <tr>
+      <td>Código</td>
+      <td>ERR_404 / HTTP_500</td>
+      <td>JetBrains Mono</td>
+      <td><code>--color-error</code></td>
+    </tr>
+    <tr>
+      <td>Título</td>
+      <td>O que falhou</td>
+      <td>JetBrains Mono</td>
+      <td><code>--color-white</code></td>
+    </tr>
+    <tr>
+      <td>Descrição</td>
+      <td>Por que falhou</td>
+      <td>Inter</td>
+      <td><code>--color-text</code></td>
+    </tr>
+    <tr>
+      <td>Ação</td>
+      <td>O que fazer agora</td>
+      <td>JetBrains Mono</td>
+      <td><code>--color-amber</code></td>
+    </tr>
+  </table>
+
+  <div class="error-box">
+    <div class="error-code">ERR_CONNECTION_TIMEOUT</div>
+    <div class="error-title">Servidor não respondeu em 30s</div>
+    <div class="error-body">A requisição foi enviada, mas o servidor não retornou resposta dentro do limite. Verifique sua conexão ou tente novamente.</div>
+    <div class="error-action">[>] Tentar novamente</div>
+  </div>
+
+  <pre><code><span class="keyword">.error-container</span> {
+  <span class="string">border-left</span>: 3px solid <span class="keyword">var</span>(--color-error);
+  <span class="string">background</span>: <span class="keyword">var</span>(--color-surface);
+  <span class="string">padding</span>: <span class="keyword">var</span>(--space-3) <span class="keyword">var</span>(--space-4);
+  <span class="string">border-radius</span>: <span class="keyword">var</span>(--radius);
+}
+<span class="comment">/* ARIA: role=alert garante leitura automática por screen readers */</span></code></pre>
+
+  <div class="do-dont">
+    <div class="do">[DO] Use role=alert para leitura automática por screen readers</div>
+    <div class="dont">[DONT] Usar --color-error fora de estados de erro</div>
+    <div class="do">[DO] Sempre inclua as quatro camadas: código, título, descrição, ação</div>
+    <div class="dont">[DONT] Omitir a camada de ação — o usuário precisa saber o que fazer</div>
+    <div class="do">[DO] Use border-left como único indicador visual de erro no container</div>
+    <div class="dont">[DONT] Usar apenas cor para comunicar erro — inclua texto descritivo</div>
+  </div>
+  <div class="page-number">12</div>
+</div>
+
+<!-- PÁGINA 13: CARD DE DADO + LOADER -->
+<div class="page">
+  <div class="meta-line">Brutalismo Logico :: Design System Spec :: v1.1</div>
+
+  <h3>Componente 03 :: Card de Dado</h3>
+  <p>O card declara que aquele bloco de dados pertence ao mesmo contexto lógico. A borda esquerda colorida é o único indicador de estado: sinal único e inequívoco, seguindo Norman.</p>
+
+  <div class="card" style="border-left: 3px solid var(--color-amber);">
+    <div class="card-label">CPU Utilization</div>
+    <div class="card-value">87.4%</div>
+    <div class="card-meta">last updated: 14:32:08 UTC</div>
+    <div class="card-action">[>] Ver detalhes</div>
+  </div>
+
+  <pre><code><span class="keyword">.card</span> {
+  <span class="string">background</span>: <span class="keyword">var</span>(--color-surface);
+  <span class="string">border</span>: 1px solid #2A2A2A;
+  <span class="string">border-radius</span>: <span class="keyword">var</span>(--radius);
+  <span class="string">padding</span>: <span class="keyword">var</span>(--space-3) <span class="keyword">var</span>(--space-4);
+}
+<span class="keyword">.card.active</span> { <span class="string">border-left</span>: 3px solid <span class="keyword">var</span>(--color-amber); }
+<span class="keyword">.card.error</span> { <span class="string">border-left</span>: 3px solid <span class="keyword">var</span>(--color-error); }
+<span class="keyword">.card.inactive</span> { <span class="string">opacity</span>: 0.5; <span class="string">pointer-events</span>: none; }</code></pre>
+
+  <div class="do-dont">
+    <div class="do">[DO] Use borda esquerda como único indicador de estado</div>
+    <div class="dont">[DONT] Usar --color-amber como background do card — viola acento único</div>
+    <div class="do">[DO] Mantenha card-label em uppercase com letter-spacing</div>
+    <div class="dont">[DONT] Adicionar sombra (box-shadow) — viola P-02</div>
+    <div class="do">[DO] Use card.inactive com pointer-events: none para desabilitar</div>
+    <div class="dont">[DONT] Usar border-radius — viola P-02</div>
+  </div>
+
+  <h3>Componente 04 :: Loader</h3>
+  <p>Loading é o único contexto onde movimento é permitido. Justificativa: feedback de atividade do sistema é funcional, não decorativo. O loader ASCII preserva a estética sem introduzir dependência de biblioteca.</p>
+
+  <div class="demo-box">
+    <div class="demo-label">Loader ASCII</div>
+    <div style="font-family: var(--font-code); font-size: var(--text-label); color: var(--color-amber);">|</div>
+  </div>
+
+  <pre><code><span class="comment">/* Loader ASCII — sem dependência externa */</span>
+<span class="keyword">.loader-ascii::after</span> {
+  <span class="string">content</span>: attr(data-frame); <span class="comment">/* JS alterna: | / - \ */</span>
+  <span class="string">font-family</span>: <span class="keyword">var</span>(--font-code);
+  <span class="string">font-size</span>: <span class="keyword">var</span>(--text-label);
+  <span class="string">color</span>: <span class="keyword">var</span>(--color-amber);
+  <span class="string">animation</span>: none; <span class="comment">/* troca via JS, não CSS */</span>
+}
+
+<span class="comment">/* Loader linear — exceção de border-radius justificada */</span>
+<span class="keyword">.loader-bar</span> {
+  <span class="string">height</span>: 2px;
+  <span class="string">background</span>: <span class="keyword">var</span>(--color-surface);
+  <span class="string">position</span>: relative;
+  <span class="string">overflow</span>: hidden;
+}
+<span class="keyword">.loader-bar::after</span> {
+  <span class="string">content</span>: '';
+  <span class="string">position</span>: absolute;
+  <span class="string">height</span>: 100%;
+  <span class="string">width</span>: 40%;
+  <span class="string">background</span>: <span class="keyword">var</span>(--color-amber);
+  <span class="string">animation</span>: lb-slide 1.2s linear infinite;
+}
+<span class="keyword">@keyframes lb-slide</span> { <span class="keyword">from</span> { <span class="string">left</span>: -40%; } <span class="keyword">to</span> { <span class="string">left</span>: 100%; } }</code></pre>
+  <div class="page-number">13</div>
+</div>
+
+<!-- PÁGINA 14: SÍMBOLOS ASCII -->
+<div class="page">
+  <div class="meta-line">Brutalismo Logico :: Design System Spec :: v1.1</div>
+
+  <h3>Símbolos ASCII :: Referência</h3>
+  <p>Quando usar ASCII como ação, o elemento deve ter role e aria-label explícitos.</p>
+
+  <table>
+    <tr>
+      <th>Símbolo</th>
+      <th>Significado</th>
+      <th>aria-label recomendado</th>
+      <th>role</th>
+    </tr>
+    <tr>
+      <td><code>[+]</code></td>
+      <td>Adicionar</td>
+      <td>Adicionar item</td>
+      <td>button</td>
+    </tr>
+    <tr>
+      <td><code>[x]</code></td>
+      <td>Fechar/Remover</td>
+      <td>Fechar</td>
+      <td>button</td>
+    </tr>
+    <tr>
+      <td><code>[&gt;]</code></td>
+      <td>Expandir/Avançar</td>
+      <td>Expandir seção</td>
+      <td>button</td>
+    </tr>
+    <tr>
+      <td><code>[&lt;]</code></td>
+      <td>Voltar</td>
+      <td>Voltar</td>
+      <td>button</td>
+    </tr>
+    <tr>
+      <td><code>[!]</code></td>
+      <td>Alerta</td>
+      <td>Atenção: {descrição}</td>
+      <td>alert</td>
+    </tr>
+    <tr>
+      <td><code>[?]</code></td>
+      <td>Ajuda</td>
+      <td>Ajuda: {tópico}</td>
+      <td>button</td>
+    </tr>
+    <tr>
+      <td><code>[*]</code></td>
+      <td>Favorito/Destaque</td>
+      <td>Marcar como favorito</td>
+      <td>button</td>
+    </tr>
+    <tr>
+      <td><code>[...]</code></td>
+      <td>Loading/Aguardar</td>
+      <td>Carregando</td>
+      <td>status</td>
+    </tr>
+  </table>
+  <div class="page-number">14</div>
+</div>
+
+<!-- PÁGINA 15: ACESSIBILIDADE -->
+<div class="page">
+  <div class="meta-line">// Seção 07</div>
+  <h1>Acessibilidade</h1>
+  <p>Acessibilidade não é concessão. É consistência com o Axioma I: função precede forma. Uma interface ilegível para parte dos usuários falhou na função antes da forma.</p>
+
+  <h3>Contraste :: WCAG 2.1</h3>
+  <table>
+    <tr>
+      <th>Par</th>
+      <th>Razão</th>
+      <th>AA</th>
+      <th>AAA</th>
+      <th>Uso</th>
+    </tr>
+    <tr>
+      <td><span class="swatch" style="background:#888"></span>#888888 / <span class="swatch" style="background:#0A0A0A"></span>#0A0A0A</td>
+      <td>5.74:1</td>
+      <td>PASSA</td>
+      <td>FALHA</td>
+      <td>Texto de corpo</td>
+    </tr>
+    <tr>
+      <td><span class="swatch" style="background:#F0F0F0"></span>#F0F0F0 / <span class="swatch" style="background:#0A0A0A"></span>#0A0A0A</td>
+      <td>18.1:1</td>
+      <td>PASSA</td>
+      <td>PASSA</td>
+      <td>Títulos e ênfase</td>
+    </tr>
+    <tr>
+      <td><span class="swatch" style="background:#FFB000"></span>#FFB000 / <span class="swatch" style="background:#0A0A0A"></span>#0A0A0A</td>
+      <td>10.81:1</td>
+      <td>PASSA</td>
+      <td>PASSA</td>
+      <td>Acento âmbar</td>
+    </tr>
+    <tr>
+      <td><span class="swatch" style="background:#0A0A0A"></span>#0A0A0A / <span class="swatch" style="background:#FFB000"></span>#FFB000</td>
+      <td>11.46:1</td>
+      <td>PASSA</td>
+      <td>PASSA</td>
+      <td>Texto em botão primário</td>
+    </tr>
+    <tr>
+      <td><span class="swatch" style="background:#FF4444"></span>#FF4444 / <span class="swatch" style="background:#0A0A0A"></span>#0A0A0A</td>
+      <td>5.6:1</td>
+      <td>PASSA</td>
+      <td>FALHA</td>
+      <td>Labels de erro — nunca corpo</td>
+    </tr>
+    <tr>
+      <td><span class="swatch" style="background:#444"></span>#444444 / <span class="swatch" style="background:#0A0A0A"></span>#0A0A0A</td>
+      <td>2.5:1</td>
+      <td>FALHA</td>
+      <td>FALHA</td>
+      <td>Apenas decorativo c/ aria-hidden</td>
+    </tr>
+  </table>
+
+  <h3>Checklist de Acessibilidade</h3>
+  <h4>Contraste e Tamanho</h4>
+  <ul style="font-family: var(--font-code); font-size: var(--text-small);">
+    <li>[ ] Texto de corpo: mínimo 1rem (16px) — nunca abaixo</li>
+    <li>[ ] Labels de sistema: mínimo 0.75rem (12px) — nunca para leitura de corpo</li>
+    <li>[ ] Todos os pares de cor passam WCAG AA (coluna acima)</li>
+  </ul>
+
+  <h4>Interação</h4>
+  <ul style="font-family: var(--font-code); font-size: var(--text-small);">
+    <li>[ ] Todos elementos interativos têm min-height e min-width de 44px</li>
+    <li>[ ] focus-visible definido para todos os elementos interativos</li>
+    <li>[ ] Ordem de tabulação segue a lógica de leitura (testada com Tab)</li>
+    <li>[ ] Nenhum elemento interativo depende exclusivamente de hover</li>
+  </ul>
+
+  <h4>ARIA e Semântica</h4>
+  <ul style="font-family: var(--font-code); font-size: var(--text-small);">
+    <li>[ ] Erros usam role=alert para leitura automática por screen readers</li>
+    <li>[ ] Ícones funcionais têm aria-label com descrição funcional</li>
+    <li>[ ] Elementos decorativos têm aria-hidden=true</li>
+    <li>[ ] Símbolos ASCII usados como ação têm role e aria-label</li>
+    <li>[ ] Informação transmitida por cor também presente em texto</li>
+  </ul>
+
+  <h3>Teste de Substituição</h3>
+  <p>Remova todas as cores da interface. A hierarquia de informação ainda deve ser legível em escala de cinza. Se não for, o layout depende de cor para comunicar estrutura: isso é <strong>falha de arquitetura</strong>.</p>
+  <div class="page-number">15</div>
+</div>
+
+<!-- PÁGINA 16: CRITÉRIO DE AVALIAÇÃO -->
+<div class="page">
+  <div class="meta-line">// Seção 08</div>
+  <h1>Critério de Avaliação</h1>
+  <p>Qualquer implementador pode auditar uma interface contra este checklist sem consultar o autor. Qualquer 'não' é uma violação do sistema.</p>
+
+  <h3>Cores</h3>
+  <ul style="font-family: var(--font-code); font-size: var(--text-small); line-height: 2;">
+    <li>[ ] Todas as cores usadas estão nos 6 tokens definidos?</li>
+    <li>[ ] O âmbar (#FFB000) aparece em no máximo um elemento ativo por tela?</li>
+    <li>[ ] O vermelho (#FF4444) é usado exclusivamente para estados de erro?</li>
+    <li>[ ] Nenhum gradiente está presente?</li>
+  </ul>
+
+  <h3>Tipografia</h3>
+  <ul style="font-family: var(--font-code); font-size: var(--text-small); line-height: 2;">
+    <li>[ ] Dados do sistema e labels usam JetBrains Mono?</li>
+    <li>[ ] Texto de leitura contínua usa Inter?</li>
+    <li>[ ] Tamanho mínimo de corpo de texto é 1rem (16px)?</li>
+    <li>[ ] Nenhuma terceira família tipográfica adicionada?</li>
+    <li>[ ] Espaçamento de letras usa os tokens --letter-spacing-*?</li>
+  </ul>
+
+  <h3>Função</h3>
+  <ul style="font-family: var(--font-code); font-size: var(--text-small); line-height: 2;">
+    <li>[ ] Todo elemento visual responde: o que isso comunica?</li>
+    <li>[ ] Nenhum elemento existe exclusivamente por razão estética?</li>
+    <li>[ ] O componente mais importante da tela tem o acento âmbar?</li>
+    <li>[ ] Estados de erro seguem a anatomia de quatro camadas?</li>
+    <li>[ ] Loader usa ASCII ou barra linear?</li>
+  </ul>
+
+  <h3>Acessibilidade</h3>
+  <ul style="font-family: var(--font-code); font-size: var(--text-small); line-height: 2;">
+    <li>[ ] Contraste de texto de corpo passa WCAG AA?</li>
+    <li>[ ] Títulos passam WCAG AAA?</li>
+    <li>[ ] Todos elementos interativos têm focus-visible?</li>
+    <li>[ ] Touch targets têm min 44px?</li>
+    <li>[ ] Ícones e ASCII funcionais têm aria-label?</li>
+    <li>[ ] Informação por cor também está em texto?</li>
+  </ul>
+
+  <h3>Estrutura</h3>
+  <ul style="font-family: var(--font-code); font-size: var(--text-small); line-height: 2;">
+    <li>[ ] Nenhum border-radius além de exceções documentadas?</li>
+    <li>[ ] Espaçamento usa tokens --space-1 a --space-6?</li>
+    <li>[ ] Todos os estados de componentes estão definidos?</li>
+    <li>[ ] Do's and Don'ts dos componentes foram respeitados?</li>
+  </ul>
+  <div class="page-number">16</div>
+</div>
+
+<!-- PÁGINA 17: TENSÕES NÃO RESOLVIDAS -->
+<div class="page">
+  <div class="meta-line">// Seção 09</div>
+  <h1>Tensões Não Resolvidas</h1>
+  <p>Todo sistema real contém contradições internas. Documentar essas tensões não é fraqueza — é honestidade estrutural. Implementadores precisam saber onde o sistema pode precisar de adaptação.</p>
+
+  <h3>[ Tensão ] 12px Como Mínimo de Label</h3>
+  <p>0.75rem (12px) para labels de sistema é compromisso entre densidade de informação e legibilidade. WCAG não define mínimo absoluto, mas 16px é a prática estabelecida para corpo. 12px pode ser inacessível para usuários com baixa visão mesmo com contraste alto. Testes de usuário em contextos reais dirão se esse limite é aceitável.</p>
+  <p style="font-family: var(--font-code); font-size: var(--text-label); color: var(--color-text);">nota: v1.2: testar com usuários reais e revisar se necessário.</p>
+
+  <h3>[ Tensão ] Transition: None e Percepção de Falha</h3>
+  <p>Ausência de transição assume que usuários preferem feedback instantâneo. Isso pode ser falso para interfaces públicas: mudança abrupta de estado pode ser interpretada como falha do sistema, não como execução. O princípio é correto para ferramentas internas; pode precisar de revisão em interfaces expostas a usuários não técnicos.</p>
+  <p style="font-family: var(--font-code); font-size: var(--text-label); color: var(--color-text);">nota: v1.2: testar percepção de mudança instantânea em público geral.</p>
+
+  <h3>[ Tensão ] 6 Tokens É Arbitrário</h3>
+  <p>A escolha de 6 tokens de cor não é derivada de princípio matemático. Poderia ser 5 (remover --color-white e usar --color-text para tudo) ou 7 (adicionar token para gráficos). 6 é o resultado de balancear hierarquia de atenção com mínimo de restrição. Extensões para contextos específicos, como dashboards com gráficos, podem exigir tokens adicionais sem violar os axiomas.</p>
+  <p style="font-family: var(--font-code); font-size: var(--text-label); color: var(--color-text);">nota: v1.2: definir protocolo de extensão de paleta.</p>
+
+  <h3>[ Tensão ] Âmbar Como Escolha Canônica</h3>
+  <p>#FFB000 é historicamente justificado pelos terminais de fósforo P3, mas ainda é uma escolha dentro da restrição de 'único acento saturado'. Qualquer cor saturada com contraste suficiente sobre #0A0A0A funcionaria. Âmbar é nossa decisão documentada, não uma verdade absoluta do sistema.</p>
+  <p style="font-family: var(--font-code); font-size: var(--text-label); color: var(--color-text);">nota: Implementadores podem substituir por outra cor saturada desde que mantenham contraste mínimo WCAG AAA sobre --color-void.</p>
+  <div class="page-number">17</div>
+</div>
+
+<!-- PÁGINA 18: POSICIONAMENTO NO CAMPO -->
+<div class="page">
+  <div class="meta-line">// Seção 10</div>
+  <h1>Posicionamento no Campo</h1>
+  <p>Brutalismo Lógico não existe no vácuo. Aqui está onde ele se posiciona em relação aos sistemas existentes e por que alguém escolheria este em vez de outro.</p>
+
+  <h3>Comparação Com Sistemas Existentes</h3>
+  <table>
+    <tr>
+      <th>Sistema</th>
+      <th>Relação</th>
+      <th>Diferença Operacional</th>
+    </tr>
+    <tr>
+      <td>Tailwind CSS</td>
+      <td>Lógica similar</td>
+      <td>Utility-first compartilha a restrição operacional, mas sem hierarquia de atenção cromática definida. Cada projeto reinventa a paleta.</td>
+    </tr>
+    <tr>
+      <td>Radix UI</td>
+      <td>Premissa próxima</td>
+      <td>Primitivos acessíveis compartilham 'função exposta', mas sem sistema cromático explícito.</td>
+    </tr>
+    <tr>
+      <td>Material Design</td>
+      <td>Objetivo distinto</td>
+      <td>Paleta expandida por necessidade de branding corporativo. Incompatível com restrição de 6 tokens, mas correto para seu nicho.</td>
+    </tr>
+    <tr>
+      <td>Carbon (IBM)</td>
+      <td>Objetivo distinto</td>
+      <td>Alta densidade de informação similar, mas paleta e componentes voltados para escala enterprise. Maior peso e complexidade.</td>
+    </tr>
+    <tr>
+      <td>Base UI</td>
+      <td>Diferença crítica</td>
+      <td>No styles propõe ausência de decisão. Brutalismo Lógico propõe decisão máxima de restrição. São opostos filosóficos.</td>
+    </tr>
+  </table>
+
+  <h3>Quando Escolher Brutalismo Lógico</h3>
+  <table>
+    <tr>
+      <th>Critério</th>
+      <th>Brutalismo Lógico</th>
+      <th>Outro Sistema</th>
+    </tr>
+    <tr>
+      <td>Densidade de informação</td>
+      <td>Alta</td>
+      <td>Qualquer</td>
+    </tr>
+    <tr>
+      <td>Público-alvo</td>
+      <td>Técnico / interno</td>
+      <td>Consumidor geral</td>
+    </tr>
+    <tr>
+      <td>Branding emocional</td>
+      <td>Não adequado</td>
+      <td>Material, Carbon</td>
+    </tr>
+    <tr>
+      <td>Bundle CSS</td>
+      <td>Mínimo (&lt; 5KB)</td>
+      <td>Variável</td>
+    </tr>
+    <tr>
+      <td>Curva de aprendizado</td>
+      <td>Baixa (6 tokens)</td>
+      <td>Maior</td>
+    </tr>
+    <tr>
+      <td>Acessibilidade out-of-box</td>
+      <td>WCAG AA/AAA documentado</td>
+      <td>Variável</td>
+    </tr>
+  </table>
+  <div class="page-number">18</div>
+</div>
+
+<!-- PÁGINA 19: QUANDO NÃO USAR -->
+<div class="page">
+  <div class="meta-line">// Seção 11</div>
+  <h1>Quando Não Usar</h1>
+  <p>Um sistema que não admite suas limitações é dogma, não arquitetura.</p>
+
+  <h3>[ Evite ] Produtos de Consumo Massivo</h3>
+  <p>Interfaces para público geral, crianças ou idosos exigem affordances visuais que o sistema deliberadamente evita. Use sistema com maior suporte a cor, arredondamento e ícones familiares.</p>
+
+  <h3>[ Evite ] Branding e Marketing</h3>
+  <p>Materiais de marca precisam de flexibilidade emocional e cromática que o sistema não oferece por design.</p>
+
+  <h3>[ Evite ] Visualizações Com Mais de 6 Cores</h3>
+  <p>Gráficos que exigem paleta estendida para diferenciar séries são incompatíveis com os 6 tokens. Extensão de paleta para esse contexto está fora do escopo da v1.1.</p>
+
+  <h3>[ Evite ] Quando o Contexto Exige Outra Coisa</h3>
+  <p>Dogmatismo não é parte da filosofia. Se o usuário, o negócio ou o contexto requer outra abordagem, <strong>use outro sistema</strong>.</p>
+  <div class="page-number">19</div>
+</div>
+
+<!-- PÁGINA 20: REFERÊNCIAS -->
+<div class="page">
+  <div class="meta-line">// Seção 12</div>
+  <h1>Referências</h1>
+
+  <div style="margin-top: var(--space-4); line-height: 2.2;">
+    <p><strong>Le Corbusier</strong> :: Vers une Architecture :: 1923<br>
+    Estrutura como estética, honestidade material sobre decoração. Fundamenta o Axioma II: estrutura exposta.</p>
+
+    <p><strong>Dieter Rams</strong> :: Dez Princípios do Bom Design :: 1970<br>
+    Bom design é o mínimo de design possível. Fundamenta o Axioma I: função precede forma.</p>
+
+    <p><strong>Christopher Alexander</strong> :: Notes on the Synthesis of Form :: 1964<br>
+    Forma é resolução de forças conflitantes. Fundamenta o Axioma III: restrição como ferramenta.</p>
+
+    <p><strong>Donald Norman</strong> :: The Design of Everyday Things :: 1988<br>
+    Affordance, feedback e modelo conceitual como fundamentos funcionais. Fundamenta P-06 e P-04.</p>
+
+    <p><strong>Daniel Kahneman</strong> :: Thinking, Fast and Slow :: 2011<br>
+    Sistema 1 e Sistema 2. Design que força System 2 para tarefas rotineiras aumenta carga cognitiva desnecessariamente. Fundamenta o alto contraste e o sinal único de ação.</p>
+
+    <p><strong>Steve Krug</strong> :: Don't Make Me Think :: 2000<br>
+    O usuário escaneia antes de ler. Interfaces que exigem deliberação para tarefas simples falham em legibilidade. Fundamenta hierarquia visual e estrutura exposta.</p>
+
+    <p><strong>Bret Victor</strong> :: Inventing on Principle :: 2012<br>
+    Lógica como ferramenta de pensamento visual imediato. A interface deve tornar a lógica do sistema perceptível sem esforço.</p>
+  </div>
+  <div class="page-number">20</div>
+</div>
+
+<!-- PÁGINA 21: MANIFESTO -->
+<div class="page">
+  <div class="meta-line">// Seção 13</div>
+  <h1>Manifesto</h1>
+
+  <div class="manifesto-box">
+    <p style="font-family: var(--font-code); font-size: var(--text-title); color: var(--color-white); line-height: 1.8; margin-bottom: var(--space-4);">
+      Construo porque tenho algo pra entregar.<br><br>
+      Recuso gradientes porque transição visual implica transição de estado,<br>
+      e estados são discretos.<br><br>
+      Recuso bordas arredondadas porque ângulo reto comunica<br>
+      precisão de hierarquia sem ambiguidade.<br><br>
+      Uso monospace para dados do sistema porque parsing requer<br>
+      alinhamento, não legibilidade de longa duração.<br><br>
+      Uso âmbar porque um sinal único e inequívoco<br>
+      vale mais que dez sinais concorrentes.<br><br>
+      Não estou tentando impressionar.<br>
+      Estou tentando reduzir carga cognitiva.<br><br>
+      A interface é a lógica tornada perceptível.<br>
+      A estrutura está exposta.<br>
+      O plano é sólido.<br>
+      O resto é ruído.
+    </p>
+  </div>
+
+  <div style="font-family: var(--font-code); font-size: var(--text-label); letter-spacing: var(--letter-spacing-code); text-transform: uppercase; line-height: 2; margin-top: var(--space-5);">
+    <div><span>Autor</span> :: Matheus Lacerda Ferreira</div>
+    <div><span>Origem</span> :: Brasil :: Ilha Solteira</div>
+    <div><span>Destino</span> :: Cork, Irlanda :: MTU</div>
+    <div><span>Versão</span> :: 1.1.0 :: 2026</div>
+    <div><span>Status</span> :: Documento Vivo</div>
+  </div>
+
+  <div class="ascii-box">
+╔══════════════════════════════════════════════════╗
+║                                                  ║
+║   O QUE NAO RESOLVE, NAO EXISTE.                 ║
+║                                                  ║
+╚══════════════════════════════════════════════════╝
+  </div>
+  <div class="page-number">21</div>
+</div>
+
+<!-- PÁGINA 22: CHANGELOG -->
+<div class="page">
+  <div class="meta-line">// Seção 14</div>
+  <h1>Changelog</h1>
+
+  <h3>Versionamento Semântico</h3>
+  <p>O sistema segue semver: <strong>MAJOR.MINOR.PATCH</strong>. MAJOR: mudanças que violam axiomas ou quebram compatibilidade. MINOR: novos componentes, tokens ou princípios sem violar axiomas. PATCH: correções de erro, clareza de texto, ajustes de CSS.</p>
+
+  <h3>Extensões Permitidas</h3>
+  <p>Extensões são adições ao sistema que não violam os axiomas. Toda extensão deve: 1. Nomear o axioma que fundamenta a adição. 2. Definir quando usar e quando não usar. 3. Incluir checklist próprio de avaliação. Extensões que violam um axioma configuram um <strong>sistema derivado</strong>, não uma extensão.</p>
+
+  <h3>v1.1.1 :: 2026</h3>
+  <ul style="font-family: var(--font-code); font-size: var(--text-small); line-height: 2;">
+    <li>+ Tema <code>Infinity-White</code> promovido de extensão isolada para subtema canônico de <code>root</code>.</li>
+    <li>+ Engine Core (<code>logical-brutalism.css</code>) instaurado como reset primário e framework modular de tokens.</li>
+    <li>+ Parasita Tailwind (<code>logical-brutalism-tailwind.js</code>) ativo. Bloqueio global de transições, curvaturas e overrides estritos em `corePlugins`.</li>
+    <li>+ Camada Front-end B2B (<code>components.html</code>) nativa sob Alpine.js/HTMX: Loader Assíncrono via ASCII O(n), Error Norman Container em 4 instâncias, e Accordions paramétricos de tempo zero.</li>
+    <li>+ Refatoração do <code>README.md</code> global convertendo-o em um <code>Registry-Index</code> técnico paras as matrizes linguísticas: Inglês, Português, Espanhol, Alemão e Chinês Simplificado.</li>
+    <li>+ Injeção estrutural da Licença MIT com portfólio de restrições rígidas no <code>CONTRIBUTING.md</code> (barreira sumária anti-estética para Pull Requests).</li>
+  </ul>
+
+  <h3>v1.1.0 :: 2026</h3>
+  <ul style="font-family: var(--font-code); font-size: var(--text-small); line-height: 2;">
+    <li>+ Acento âmbar #FFB000 substituindo verde #00FF00 — referência fósforo P3</li>
+    <li>+ Seção Tensões Não Resolvidas adicionada</li>
+    <li>+ Seção Posicionamento no Campo adicionada</li>
+    <li>+ Manifesto reescrito — versão operacional sem antropomorfização</li>
+    <li>+ Do's and Don'ts adicionados nos três componentes</li>
+    <li>+ Componente Loader adicionado com ASCII e barra linear</li>
+    <li>+ Tabela de símbolos ASCII com ARIA adicionada</li>
+    <li>+ Tokens --letter-spacing-code e --letter-spacing-struct adicionados</li>
+    <li>+ Redundâncias removidas — acento único mencionado uma vez por seção</li>
+    <li>+ Tese central corrigida: 'uma forma legítima' em vez de 'única forma legítima'</li>
+  </ul>
+
+  <h3>v1.0.0 :: 2026</h3>
+  <ul style="font-family: var(--font-code); font-size: var(--text-small); line-height: 2;">
+    <li>+ Versão inicial do sistema</li>
+    <li>+ 6 tokens de cor com hierarquia de atenção</li>
+    <li>+ Tipografia em rem com base 16px</li>
+    <li>+ Sistema de espaçamento com 6 tokens</li>
+    <li>+ 7 princípios gerativos com QUANDO e COMO</li>
+    <li>+ 3 componentes: botão, erro, card</li>
+    <li>+ Seção de acessibilidade com checklist WCAG</li>
+    <li>+ Referências: Le Corbusier, Rams, Alexander, Norman, Kahneman, Krug, Victor</li>
+  </ul>
+  <div class="page-number">22</div>
+</div>
+
+<button id="theme-toggle">[LIGHT]</button>
+<script>
+const btn = document.getElementById('theme-toggle');
+btn.addEventListener('click', () => {
+  const isLight = document.documentElement.dataset.theme === 'infinity-white';
+  document.documentElement.dataset.theme = isLight ? '' : 'infinity-white';
+  btn.textContent = isLight ? '[LIGHT]' : '[DARK]';
+});
+</script>
+</body>
+</html>

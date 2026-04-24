@@ -1,0 +1,203 @@
+/* =========================================================================
+   LOGICAL BRUTALISM :: CORE ENGINE v1.2
+   AUTHOR: Matheus Lacerda Ferreira
+   "O que não resolve, não existe."
+   ========================================================================= */
+
+/* 1. AGRESSIVE RESET & GRID STABILITY */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+  border-style: solid;
+  border-color: currentColor;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  font-family: var(--font-struct, sans-serif);
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-void);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+}
+
+/* 2. ROOT & EXTENSION TOKENS */
+:root {
+  --color-void: #0A0A0A;
+  --color-amber: #FFB000;
+  --color-surface: #1E1E1E;
+  --color-text: #888888;
+  --color-white: #F0F0F0;
+  --color-error: #FF4444;
+
+  --font-struct: 'Inter', sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+  
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+}
+
+[data-theme="infinity-white"] {
+  --color-void: #E3E3E3;
+  --color-amber: #B35900;
+  --color-surface: #CCCCCC;
+  --color-text: #4D4D4D;
+  --color-white: #0A0A0A;
+  --color-error: #BE123C;
+}
+
+/* 3. TYPOGRAPHY UTILITIES */
+.font-struct {
+  font-family: var(--font-struct);
+}
+
+.font-code {
+  font-family: var(--font-code);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* 4. COMPONENT: BUTTON */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-code);
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-void);
+  background: var(--color-amber);
+  border: none;
+  border-radius: 0 !important;
+  cursor: pointer;
+  transition: none !important;
+  outline: none;
+}
+
+.btn:active {
+  background: var(--color-white);
+  color: var(--color-void);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-text);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* 5. COMPONENT: NAV (RADICAL RESPONSIVE) */
+.lb-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--color-surface);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-code);
+  text-transform: uppercase;
+  background: var(--color-void);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.lb-nav-logo {
+  color: var(--color-white);
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.lb-nav-links {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.lb-nav-link {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: none !important;
+  font-size: 0.875rem;
+  font-weight: 600;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-1);
+}
+
+.lb-nav-link::before { content: "[ "; color: transparent; }
+.lb-nav-link::after { content: " ]"; color: transparent; }
+.lb-nav-link:hover, .lb-nav-link.active { color: var(--color-amber); }
+.lb-nav-link:hover::before, .lb-nav-link.active::before { color: var(--color-amber); }
+.lb-nav-link:hover::after, .lb-nav-link.active::after { color: var(--color-amber); }
+
+/* 6. UTILITY: RESPONSIVE TABLE */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--color-surface);
+}
+
+.table-responsive table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+/* 7. RADICAL RESPONSIVENESS OVERRIDES */
+@media (max-width: 768px) {
+  :root {
+    --space-4: 1.125rem;
+    --space-5: 1.5rem;
+    --space-6: 2.25rem;
+  }
+
+  .lb-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .lb-nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+    width: 100%;
+  }
+
+  .lb-nav-link {
+    width: 100%;
+    padding: var(--space-2) 0;
+  }
+}

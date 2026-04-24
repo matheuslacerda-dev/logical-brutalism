@@ -1,4 +1,4 @@
-# BRUTALISMO LÓGICO v1.1.1 :: DOCUMENTAÇÃO OFICIAL
+# BRUTALISMO LÓGICO v1.2.0 :: DOCUMENTAÇÃO OFICIAL
 
 > "O que não resolve, não existe."
 

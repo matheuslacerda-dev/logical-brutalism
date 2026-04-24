@@ -1,4 +1,4 @@
-# LOGISCHER BRUTALISMUS v1.1.1
+# LOGISCHER BRUTALISMUS v1.2.0
 
 > "Was kein Problem löst, existiert nicht."
 

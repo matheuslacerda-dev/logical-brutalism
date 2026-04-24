@@ -1,0 +1,31 @@
+/* LOGICAL BRUTALISM v1.2.0 :: Core Engine */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0; padding: 0;
+  border-radius: 0 !important;
+  transition: none !important;
+  animation: none !important;
+}
+:root {
+  --color-void: #0A0A0A;
+  --color-amber: #FFB000;
+  --color-surface: #1E1E1E;
+  --color-text: #888888;
+  --color-white: #F0F0F0;
+  --color-error: #FF4444;
+  --font-struct: 'Inter', sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+}
+[data-theme="infinity-white"] {
+  --color-void: #E3E3E3;
+  --color-amber: #B35900;
+  --color-surface: #CCCCCC;
+  --color-text: #4D4D4D;
+  --color-white: #0A0A0A;
+  --color-error: #BE123C;
+}
+body {
+  background-color: var(--color-void);
+  color: var(--color-text);
+  font-family: var(--font-struct);
+}

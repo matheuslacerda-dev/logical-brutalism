@@ -1,4 +1,4 @@
-# 逻辑粗野主义 (LOGICAL BRUTALISM) v1.1.1
+# 逻辑粗野主义 (LOGICAL BRUTALISM) v1.2.0
 
 > "如果不解决问题，它就不存在。"
 

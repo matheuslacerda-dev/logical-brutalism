@@ -1,4 +1,4 @@
-# LOGICAL BRUTALISM v1.1.1 :: SYSTEM KERNEL
+# LOGICAL BRUTALISM v1.2.0 :: SYSTEM KERNEL
 
 > "If it doesn't solve a problem, it doesn't exist."
 
@@ -27,11 +27,12 @@ The documentation requires strict reading. Choose your regional node matrix belo
 
 *Note: The English structural tree is located under `/docs/` as the default fallback. Ensure adherence to the mandatory components: 3 Axioms, 5 Pillars, and 7 Generative Principles.*
 
-## 02 :: CHANGELOG v1.1.1
-
-*   `[ADD]` **Light Theme (Infinity-White) deployed:** Implementation of the optical fatigue countermeasure. Background strictly computed to `#E3E3E3` (Industrial Concrete). Accent shift to `#B35900` (Oxidized Amber) and text to `#0A0A0A` (Absolute Void) guaranteeing continuous `AAA` compliance. (Axiom I holds true).
-*   `[MOD]` **Repository License:** Re-licensed structurally under MIT License. Open adoption targeted toward high-density B2B ecosystem takeovers. Tracing architectural genesis takes precedence over code-gatekeeping.
-*   `[MOD]` **Documentation Consolidation:** Total migration from legacy PDFs into high-density Markdown arrays. Structural integrity locked upon the 3 Axioms, 5 Fundamental Pillars, and 7 Generative Principles (e.g. P-02: 90° angles only, P-06: zero transitions).
+## 02 :: CHANGELOG v1.2.0 (THE ARCHITECTURE UPDATE)
+- [ADD] Official Mobile Optimization (Radical Responsiveness).
+- [MOD] Core migration: PDF-first to Living HTML Documentation (Axiom II).
+- [MOD] Repository Structural Overhaul: Decoupling core distribution from showcase demos.
+- [ADD] Internationalization: Full English UI with multi-language documentation bridge (EN, PT, ES, DE, ZH).
+- [ADD] Python-based CLI Scaffolder (lb-init.py) for backend integration.
 
 ## EXECUTION MANIFESTO
 

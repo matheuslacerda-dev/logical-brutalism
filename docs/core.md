@@ -1,4 +1,4 @@
-# LOGICAL BRUTALISM v1.1.1 :: OFFICIAL DOCUMENTATION
+# LOGICAL BRUTALISM v1.2.0 :: OFFICIAL DOCUMENTATION
 
 > "If it doesn't solve a problem, it doesn't exist."
 

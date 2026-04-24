@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Logical Brutalism :: B2B Interface v1.2.0{% endblock %}</title>
+  
+  <!-- Tipografia Restrita -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Dependências Parasíticas Assíncronas (Infraestrutura Dinâmica Menor) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  
+  <!-- Core Engine CSS (Matriz Absoluta de Reset) -->
+  <!-- path absoluto apontado ao /core/ (Substituir pela logica { % static % } do seu fw) -->
+  <link rel="stylesheet" href="/core/logical-brutalism.css">
+  
+  <!-- Engine Tailwind Bloqueada pelo Arquivo Fonte -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/core/logical-brutalism-tailwind.js"></script>
+
+  <!-- Componente Header Global (Override em Tempo de Execução para Brackets O(1)) -->
+  <style>
+    /* LOGICAL BRUTALISM: MASTER NAV HEADER */
+    .lb-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--color-surface, #1E1E1E);
+      padding: var(--space-3) 0;
+      font-family: var(--font-code, 'JetBrains Mono', monospace);
+      text-transform: uppercase;
+      background: var(--color-void, #0A0A0A);
+      width: 100%;
+    }
+    .lb-nav-logo {
+      color: var(--color-white, #F0F0F0);
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .lb-nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .lb-nav-link {
+      color: var(--color-text, #888888);
+      text-decoration: none;
+      transition: none !important;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    /* Anti-Shift: Transparent Brackets previnem re-rendering do container grid vizinho */
+    .lb-nav-link::before { content: "[ "; color: transparent; }
+    .lb-nav-link::after { content: " ]"; color: transparent; }
+    .lb-nav-link:hover, .lb-nav-link.active { color: var(--color-amber, #FFB000); }
+    .lb-nav-link:hover::before, .lb-nav-link.active::before { color: var(--color-amber, #FFB000); }
+    .lb-nav-link:hover::after, .lb-nav-link.active::after { color: var(--color-amber, #FFB000); }
+  </style>
+
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body class="bg-lb-void text-lb-text font-struct min-h-screen flex flex-col">
+
+  <!-- HEADER GERAL DA APLICAÇÃO -->
+  <!-- A restrição de padding X é tratada no max-w ou global wrap do layout secundario -->
+  <header class="w-full px-6 md:px-12 bg-lb-void">
+    <nav class="lb-nav">
+      <a href="/" class="lb-nav-logo">BRUTALISMO_LÓGICO</a>
+      <div class="lb-nav-links">
+        <!-- Standardized routes (Overwrite using framework routing e.g. django {% url %} or fastApi app.url_path_for) -->
+        <a href="/" class="lb-nav-link active">LIVING SPEC</a>
+        <a href="/showcase/components.html" class="lb-nav-link">UI COMPONENTS</a>
+        <a href="/showcase/data-components.html" class="lb-nav-link">DATA DENSITY</a>
+        <a href="/showcase/market-comparison.html" class="lb-nav-link">MARKET</a>
+        <a href="/showcase/showcase-blind-test.html" class="lb-nav-link">BLIND TEST</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MÓDULO BASE DE CONTEÚDO MUTÁVEL -->
+  <main style="padding: var(--space-6);" class="flex-grow w-full max-w-[1280px] mx-auto box-border">
+    <!-- DOM PAYLOAD INJECTION POINT: JINJA2 / FASTAPI / DJANGO -->
+    {% block content %}
+    <!-- RENDERIZAÇÃO ESTREITA E HERDADA AQUI -->
+    {% endblock %}
+  </main>
+
+  <footer class="mt-auto border-t border-lb-surface px-6 md:px-12 py-4">
+    <div class="font-code text-xs text-lb-text tracking-widest uppercase">
+      [SYS_STATUS] :: { % block footer_status % } ONLINE :: v1.2.0 { % endblock % }
+    </div>
+  </footer>
+
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

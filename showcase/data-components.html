@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logical Brutalism :: High Density (Data)</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="../core/logical-brutalism.css">
+
+  <style>
+    /* Demo layout support */
+    .catalog-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: var(--space-6) var(--space-4);
+    }
+
+    /* =========================================================================
+       THE DENSITY AXIOM TEST: DATA TABLES
+       ========================================================================= */
+    .brutal-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .brutal-table th {
+      font-family: var(--font-struct);
+      color: var(--color-text);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      padding: var(--space-2) var(--space-3);
+      border-bottom: 2px solid var(--color-surface);
+      font-weight: 600;
+    }
+
+    .brutal-table td {
+      font-family: var(--font-code);
+      color: var(--color-white);
+      font-size: 0.875rem;
+      padding: var(--space-2) var(--space-3);
+      border-bottom: 1px solid var(--color-surface);
+    }
+
+    /* High Performance Hover State (Zero Transition) */
+    .brutal-table tbody tr:hover {
+      background-color: #141414; /* 1 tone above absolute void */
+      transition: none !important;
+    }
+
+    /* Strict table states */
+    .brutal-table td.numeric {
+      text-align: right;
+    }
+    
+    .brutal-table td.error {
+      color: var(--color-error);
+    }
+
+    /* =========================================================================
+       BASE STRUCTURE FOR CHARTS (3RD PARTY OVERRIDE)
+       ========================================================================= */
+    .chart-container {
+      border: 1px solid var(--color-surface);
+      background: var(--color-void);
+      padding: var(--space-4);
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-surface);
+      padding-bottom: var(--space-2);
+    }
+
+    .chart-axis-label {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--color-text);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .chart-placeholder {
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed var(--color-surface);
+      color: var(--color-text);
+      font-family: var(--font-code);
+      font-size: 0.875rem;
+    }
+
+    /* 
+      TECHNICAL GUIDELINES (CSS OVERRIDE) FOR CHART LIBRARIES:
+      Require this parasitic payload on any canvas/SVG container (ApexCharts, Chart.js, Recharts):
+
+      .apexcharts-gridline, .chartjs-grid {
+        stroke: var(--color-surface) !important;
+        stroke-dasharray: 0 !important;
+      }
+      .apexcharts-series path, .chartjs-line {
+        stroke: var(--color-amber) !important;
+        stroke-width: 2px !important;
+        fill: none !important;
+      }
+      .apexcharts-tooltip, .chartjs-tooltip {
+        border-radius: 0 !important;
+        background: var(--color-surface) !important;
+        border: 1px solid var(--color-amber) !important;
+        color: var(--color-white) !important;
+        font-family: var(--font-code) !important;
+        box-shadow: none !important;
+        transition: none !important;
+      }
+      .apexcharts-text tspan {
+        font-family: var(--font-code) !important;
+        fill: var(--color-text) !important;
+      }
+    */
+  </style>
+</head>
+<body>
+
+
+
+<nav class="lb-nav">
+  <a href="../index.html" class="lb-nav-logo">LOGICAL_BRUTALISM</a>
+  <div class="lb-nav-links">
+    <a href="../index.html" class="lb-nav-link">LIVING SPEC</a>
+    <a href="../showcase/components.html" class="lb-nav-link">UI COMPONENTS</a>
+    <a href="../showcase/data-components.html" class="lb-nav-link active">DATA DENSITY</a>
+    <a href="../showcase/market-comparison.html" class="lb-nav-link">MARKET</a>
+    <a href="../showcase/showcase-blind-test.html" class="lb-nav-link">BLIND TEST</a>
+  </div>
+</nav>
+
+
+<div class="catalog-container">
+
+  <!-- ========================================== -->
+  <!-- BLOCK 1: THE BRUTAL DATA TABLE             -->
+  <!-- ========================================== -->
+  <section style="margin-bottom: var(--space-6);">
+    <h2 class="font-code" style="color: var(--color-white); margin-bottom: var(--space-4);">
+      [01] THE BRUTAL DATA TABLE (POLARS/SQL BINDING)
+    </h2>
+    <p class="font-struct" style="margin-bottom: var(--space-4); color: var(--color-text); max-width: 70ch;">
+      Density operates in O(1). Zero background zebra-striping. Hover is limited to a subtle 1-tone shift relative to the global void via raw CSS. Quantitative data and indexed logs must unconditionally be formatted in JetBrains Mono for buckled reading preservation and dot-aligned fixation.
+    </p>
+    
+    <div class="table-responsive">
+      <table class="brutal-table">
+        <thead>
+          <tr>
+            <th>Hash ID</th>
+            <th>Resource Node</th>
+            <th>Execution Time</th>
+            <th class="numeric">Bandwidth (MB)</th>
+            <th class="numeric">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Simulated High Density Data -->
+          <tr>
+            <td>0x7A890FD</td>
+            <td>cluster-eu-west-1a</td>
+            <td>2026-04-23T12:01:05Z</td>
+            <td class="numeric">4,092.14</td>
+            <td class="numeric">OK_200</td>
+          </tr>
+          <tr>
+            <td>0x3B211AC</td>
+            <td>cluster-eu-west-1c</td>
+            <td>2026-04-23T12:01:06Z</td>
+            <td class="numeric">2,154.88</td>
+            <td class="numeric">OK_200</td>
+          </tr>
+          <tr>
+            <td>0x8F908BE</td>
+            <td>gpu-node-alpha</td>
+            <td>2026-04-23T12:01:09Z</td>
+            <td class="numeric">940.01</td>
+            <td class="numeric error">ERR_503</td>
+          </tr>
+          <tr>
+            <td>0x1CC43FE</td>
+            <td>cache-layer-02</td>
+            <td>2026-04-23T12:01:14Z</td>
+            <td class="numeric">12,045.76</td>
+            <td class="numeric">OK_200</td>
+          </tr>
+          <tr>
+            <td>0x9E3B21D</td>
+            <td>cluster-us-east-1</td>
+            <td>2026-04-23T12:01:18Z</td>
+            <td class="numeric">142.10</td>
+            <td class="numeric">OK_200</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- BLOCK 2: BASE STRUCTURE FOR CHARTS          -->
+  <!-- ========================================== -->
+  <section style="margin-bottom: var(--space-6);">
+    <h2 class="font-code" style="color: var(--color-white); margin-bottom: var(--space-4);">
+      [02] CHART STRUCTURE AND GUIDELINES
+    </h2>
+    <p class="font-struct" style="margin-bottom: var(--space-4); color: var(--color-text); max-width: 70ch;">
+      The design confines any external plugin using strict parametric gridding. X and Y axis labels command the visualisation under pure var(--font-code).
+    </p>
+
+    <div class="chart-container">
+      
+      <!-- Chart Axis Header -->
+      <div class="chart-header">
+        <div class="chart-axis-label">Y :: LATENCY (ms)</div>
+        <div class="chart-axis-label">X :: TEMPORAL SERIES (hh:mm:ss)</div>
+      </div>
+
+      <div class="chart-placeholder">
+        [SYS_CANVAS_INJECTION_PENDING :: CHECK OVERRIDE LOG EXPOSED IN SOURCE TARGET]
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

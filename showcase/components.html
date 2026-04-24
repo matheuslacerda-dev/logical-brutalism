@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logical Brutalism :: Components</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Official Dependencies (No node_modules overhead) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <link rel="stylesheet" href="../core/logical-brutalism.css">
+
+  <style>
+    /* Demo layout support */
+    .catalog-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: var(--space-6) var(--space-4);
+    }
+  </style>
+</head>
+<body>
+
+
+
+<nav class="lb-nav">
+  <a href="../index.html" class="lb-nav-logo">LOGICAL_BRUTALISM</a>
+  <div class="lb-nav-links">
+    <a href="../index.html" class="lb-nav-link">LIVING SPEC</a>
+    <a href="../showcase/components.html" class="lb-nav-link active">UI COMPONENTS</a>
+    <a href="../showcase/data-components.html" class="lb-nav-link">DATA DENSITY</a>
+    <a href="../showcase/market-comparison.html" class="lb-nav-link">MARKET</a>
+    <a href="../showcase/showcase-blind-test.html" class="lb-nav-link">BLIND TEST</a>
+  </div>
+</nav>
+
+
+<div class="catalog-container">
+
+  <!-- ========================================== -->
+  <!-- BLOCK 1: THE BRUTALIST LOADER (ALPINE.JS)   -->
+  <!-- ========================================== -->
+  <section style="margin-bottom: var(--space-6);">
+    <h2 class="font-code" style="color: var(--color-white); margin-bottom: var(--space-4);">
+      [01] BRUTALIST LOADER
+    </h2>
+    <p class="font-struct" style="margin-bottom: var(--space-3); color: var(--color-text);">
+      Thread cycle locked at 80ms under an ASCII array `['|','/','-','\\']`. Execution triggered via local HTMX pre/post events.
+    </p>
+    
+    <div x-data="loader()" style="padding: var(--space-3); border: 1px solid var(--color-surface);">
+      
+      <!-- The button uses HTMX to simulate an HTTP mutation -->
+      <!-- Alpine listens to events to manage the visual cycle without fake loaders -->
+      <button class="btn" 
+              hx-post="https://httpbin.org/delay/2" 
+              hx-swap="none"
+              @htmx:before-request.camel="start()" 
+              @htmx:after-request.camel="stop()">
+        <span x-text="active ? frame : '[>] EXECUTE ROUTINE'"></span>
+      </button>
+
+    </div>
+
+    <!-- Logic Engine (Alpine) -->
+    <script>
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('loader', () => ({
+          active: false,
+          frames: ['|', '/', '-', '\\'],
+          index: 0,
+          frame: '|',
+          interval: null,
+          start() {
+            this.active = true;
+            this.interval = setInterval(() => {
+              this.index = (this.index + 1) % this.frames.length;
+              this.frame = this.frames[this.index];
+            }, 80);
+          },
+          stop() {
+            this.active = false;
+            clearInterval(this.interval);
+            this.index = 0;
+            this.frame = '|';
+          }
+        }))
+      })
+    </script>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- BLOCK 2: MAXIMUM HONESTY (ERROR STATE)     -->
+  <!-- ========================================== -->
+  <section style="margin-bottom: var(--space-6);">
+    <h2 class="font-code" style="color: var(--color-white); margin-bottom: var(--space-4);">
+      [02] MAXIMUM HONESTY ERROR
+    </h2>
+    <p class="font-struct" style="margin-bottom: var(--space-3); color: var(--color-text);">
+      Structural notification in 4 Norman Layers. The error never fails silently. Colour is triggered only within this perimeter.
+    </p>
+
+    <div role="alert" style="border-left: 4px solid var(--color-error); background: var(--color-surface); padding: var(--space-3) var(--space-4);">
+      
+      <!-- 1. Failure Code -->
+      <div class="font-code" style="color: var(--color-error); font-size: 0.75rem; margin-bottom: var(--space-2);">
+        [ERR_503]
+      </div>
+      
+      <!-- 2. Title (Instantiated Failure) -->
+      <div class="font-code" style="color: var(--color-white); font-size: 1rem; margin-bottom: var(--space-2);">
+        UPSTREAM DEPENDENCY TIMEOUT
+      </div>
+      
+      <!-- 3. Technical Description -->
+      <div class="font-struct" style="color: var(--color-text); font-size: 1rem; margin-bottom: var(--space-3); max-width: 60ch;">
+        The indexing microservice failed to emit a response within `t < 30s`. The main pipeline rejected the connection to preserve the worker pool. Subsequent queries were blocked.
+      </div>
+      
+      <!-- 4. Action / Resolution Route -->
+      <!-- The button uses class "btn", but applies manual override consistent with secondary state -->
+      <button class="font-code" style="min-height: 44px; padding: var(--space-2) var(--space-3); color: var(--color-amber); background: transparent; border: 1px solid var(--color-amber); cursor: pointer;"
+              hx-post="/api/system/retry" 
+              hx-swap="outerHTML">
+        [>] ATTEMPT RESTART
+      </button>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- BLOCK 3: DATA CARD ACCORDION (ALPINE)      -->
+  <!-- ========================================== -->
+  <section style="margin-bottom: var(--space-6);">
+    <h2 class="font-code" style="color: var(--color-white); margin-bottom: var(--space-4);">
+      [03] DATA CARD ACCORDION
+    </h2>
+    <p class="font-struct" style="margin-bottom: var(--space-3); color: var(--color-text);">
+      Raw JSON exposure triggered via ASCII. CSS transitions are banned; the DOM operation is instant and unquestionable.
+    </p>
+
+    <!-- Persistent state managed on parent node -->
+    <div x-data="{ expanded: false }" style="border: 1px solid var(--color-surface); background: var(--color-void); padding: var(--space-3);">
+      
+      <!-- Accordion Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="font-code" style="color: var(--color-white); font-size: 1rem;">
+          PAYLOAD :: PROCESS_NODE_07
+        </span>
+        
+        <!-- Accessible Toggle Button -->
+        <button class="font-code" 
+                @click="expanded = !expanded" 
+                :aria-expanded="expanded"
+                aria-label="Toggle Data Display"
+                style="min-height: 44px; min-width: 44px; background: transparent; color: var(--color-amber); border: none; cursor: pointer; font-size: 1rem;">
+          <span x-text="expanded ? '[-]' : '[+]'"></span>
+        </button>
+      </div>
+      
+      <!-- Expandable Area (Hard Toggle) -->
+      <div x-show="expanded" style="display: none; margin-top: var(--space-3); border-top: 1px solid var(--color-surface); padding-top: var(--space-3);">
+        <pre class="font-code" style="background: var(--color-surface); padding: var(--space-3); margin: 0; color: var(--color-text); font-size: 0.875rem; overflow-x: auto; white-space: pre-wrap;"><code>{
+  "timestamp": "2026-04-23T17:49:10Z",
+  "actor_id": "usr_vV89z2P",
+  "computed_load": "88.4%",
+  "latency_ms": 104.2,
+  "status_code": "WARN_THRESHOLD_NEAR"
+}</code></pre>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
