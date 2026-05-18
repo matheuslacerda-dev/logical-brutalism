@@ -1,4 +1,4 @@
-# LOGICAL BRUTALISM v1.2.0 :: SYSTEM KERNEL
+# LOGICAL BRUTALISM v1.2.1 :: SYSTEM KERNEL
 
 > "If it doesn't solve a problem, it doesn't exist."
 
@@ -14,7 +14,22 @@ Logical Brutalism was not born from aesthetic conjectures. Its origin lies in th
 
 Just as structuralist architecture exposes raw materials and refuses decorative coating, Logical Brutalism forces interface engineering to expose its intrinsic logic. Any visual layer that contradicts or masks function is eliminated. There is no ornament devoid of information.
 
-## 01 :: ARCHITECTURE AND LOCALIZATION
+## 01 :: QUICK START
+
+The system is distributed globally for immediate adoption.
+
+**NPM (Frontend/Tailwind):**
+```bash
+npx logical-brutalism
+```
+
+**PyPI (Python/Django/FastAPI):**
+```bash
+pip install logical-brutalism
+logical-brutalism
+```
+
+## 02 :: ARCHITECTURE AND LOCALIZATION
 
 This repository holds the absolute geometric and mathematical constants of the Logical Brutalism design system. 
 The documentation requires strict reading. Choose your regional node matrix below:
@@ -27,18 +42,16 @@ The documentation requires strict reading. Choose your regional node matrix belo
 
 *Note: The English structural tree is located under `/docs/` as the default fallback. Ensure adherence to the mandatory components: 3 Axioms, 5 Pillars, and 7 Generative Principles.*
 
-## 02 :: CHANGELOG v1.2.0 (THE ARCHITECTURE UPDATE)
+## 03 :: CHANGELOG v1.2.1 (THE DX REFINEMENT)
+- [ADD] Native global distribution via NPM (npx) and PyPI (pip) wrappers.
 - [ADD] Official Mobile Optimization (Radical Responsiveness).
 - [MOD] Core migration: PDF-first to Living HTML Documentation (Axiom II).
 - [MOD] Repository Structural Overhaul: Decoupling core distribution from showcase demos.
 - [ADD] Internationalization: Full English UI with multi-language documentation bridge (EN, PT, ES, DE, ZH).
 - [ADD] Python-based CLI Scaffolder (lb-init.py) for backend integration.
 
-## EXECUTION MANIFESTO
+## 04 :: EXECUTION MANIFESTO
 
 The construction process is strictly deliverable-based. Development occurs entirely within the parametric matrix defined in the core nodes. 
-Interpolated visual transitions indicate ambiguous state transitions. States are digitally discrete; the interface reflects them as `[1 | 0]`. Borders are not smoothed; computational precision relies on edges by logical principle. Cerebral parsing in high-density screens intrinsically benefits from monospace fonts `(JetBrains Mono)`. The luminous signal `(--color-amber)` must possess the property of unambiguousness; the presence of multiple calls destroys the concept of hierarchy.
 
-The structure has been exposed. The architectural plan is solid. The absence of the rest categorically classifies it as noise.
-
-MISSION STATUS: **INEVITABLE.**
+[>] **[READ THE FULL EXECUTION MANIFESTO HERE](docs/core.md)**

@@ -1,0 +1,17 @@
+{
+  "name": "logical-brutalism",
+  "version": "1.2.1",
+  "description": "Parametric Engine Deployment for Backend Infrastructure.",
+  "main": "core/logical-brutalism-tailwind.js",
+  "style": "core/logical-brutalism.css",
+  "exports": {
+    ".": "./core/logical-brutalism-tailwind.js",
+    "./css": "./core/logical-brutalism.css",
+    "./elements": "./core/lb-elements.js"
+  },
+  "bin": {
+    "logical-brutalism": "cli/lb-node-wrapper.js"
+  },
+  "author": "Matheus Lacerda Ferreira",
+  "license": "MIT"
+}

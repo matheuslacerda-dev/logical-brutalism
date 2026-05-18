@@ -15,53 +15,20 @@ C_VOID = '\033[0m'
 
 ASCII_ART = rf"""{C_AMBER}
   _      ____   _____ _____ _____          _      
- | |    / __ \ / ____|_   _/ ____|   /\\   | |     
- | |   | |  | | |  __  | || |       /  \\  | |     
- | |   | |  | | | |_ | | || |      / /\\ \\ | |     
- | |___| |__| | |__| |_| || |____ / ____ \\| |____ 
- |______\\____/ \\_____|_____\\_____/_/    \\_\\______|
+ | |    / __ \ / ____|_   _/ ____|   /\   | |     
+ | |   | |  | | |  __  | || |       /  \  | |     
+ | |   | |  | | | |_ | | || |      / /\ \ | |     
+ | |___| |__| | |__| |_| || |____ / ____ \| |____ 
+ |______\____/ \_____|_____\_____/_/    \_\______|
                                                   
   ____  _____  _    _ _______       _      _____  _____ __  __ 
- |  _ \\|  __ \\| |  | |__   __|/\\   | |    |_   _|/ ____|  \\/  |
- | |_) | |__) | |  | |  | |  /  \\  | |      | | | (___ | \\  / |
- |  _ <|  _  /| |  | |  | | / /\\ \\ | |      | |  \\___ \\| |\\/| |
- | |_) | | \\ \\| |__| |  | |/ ____ \\| |____ _| |_ ____) | |  | |
- |____/|_|  \\_\\\\____/   |_/_/    \\_\\______|_____|_____/|_|  |_|
+ |  _ \|  __ \| |  | |__   __|/\   | |    |_   _|/ ____|  \/  |
+ | |_) | |__) | |  | |  | |  /  \  | |      | | | (___ | \  / |
+ |  _ <|  _  /| |  | |  | | / /\ \ | |      | |  \___ \| |\/| |
+ | |_) | | \ \| |__| |  | |/ ____ \| |____ _| |_ ____) | |  | |
+ |____/|_|  \_\\____/   |_/_/    \_\______|_____|_____/|_|  |_|
                                                                
  :: IF IT DOES NOT SOLVE IT, IT DOES NOT EXIST ::{C_VOID}
-"""
-
-CSS_PAYLOAD = """/* LOGICAL BRUTALISM v1.2.0 :: Core Engine */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0; padding: 0;
-  border-radius: 0 !important;
-  transition: none !important;
-  animation: none !important;
-}
-:root {
-  --color-void: #0A0A0A;
-  --color-amber: #FFB000;
-  --color-surface: #1E1E1E;
-  --color-text: #888888;
-  --color-white: #F0F0F0;
-  --color-error: #FF4444;
-  --font-struct: 'Inter', sans-serif;
-  --font-code: 'JetBrains Mono', monospace;
-}
-[data-theme="infinity-white"] {
-  --color-void: #E3E3E3;
-  --color-amber: #B35900;
-  --color-surface: #CCCCCC;
-  --color-text: #4D4D4D;
-  --color-white: #0A0A0A;
-  --color-error: #BE123C;
-}
-body {
-  background-color: var(--color-void);
-  color: var(--color-text);
-  font-family: var(--font-struct);
-}
 """
 
 HTML_PAYLOAD = """<!DOCTYPE html>
@@ -85,6 +52,8 @@ HTML_PAYLOAD = """<!DOCTYPE html>
   
   <!-- Tailwind Hook with Brutalist Plugin -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/static/js/logical-brutalism-tailwind.js"></script>
+  
   <script>
     tailwind.config = {
       theme: {
@@ -102,6 +71,14 @@ HTML_PAYLOAD = """<!DOCTYPE html>
             'code': ['JetBrains Mono', 'monospace'],
           }
         }
+      },
+      corePlugins: {
+        borderRadius: false,
+        transitionProperty: false,
+        transitionDuration: false,
+        transitionTimingFunction: false,
+        transitionDelay: false,
+        animation: false,
       }
     }
   </script>
@@ -130,20 +107,41 @@ def main():
     print(ASCII_ART)
     print(f"{C_AMBER}[STARTING DEPLOYMENT PROTOCOL]{C_VOID}\n")
 
-    # 1. Diretório CSS e Arquivo CSS
+    # Caminhos dinâmicos baseados no diretório do instalador (distribuição independente de OS)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    core_css_source = os.path.join(script_dir, '..', 'core', 'logical-brutalism.css')
+    core_js_source = os.path.join(script_dir, '..', 'core', 'logical-brutalism-tailwind.js')
+
+    # 1. Copiar recursos CSS e JS do Core para a infraestrutura alvo
     css_dir = os.path.join(os.getcwd(), 'static', 'css')
+    js_dir = os.path.join(os.getcwd(), 'static', 'js')
     
     try:
+        # Lê dinamicamente o arquivo primário de CSS
+        with open(core_css_source, 'r', encoding='utf-8') as source_file:
+            css_content = source_file.read()
+            
         os.makedirs(css_dir, exist_ok=True)
         css_path = os.path.join(css_dir, 'logical-brutalism.css')
         with open(css_path, 'w', encoding='utf-8') as f:
-            f.write(CSS_PAYLOAD)
+            f.write(css_content)
         print(f" [+] ROOT CSS MATRIX INJECTED :: {css_path}")
+
+        # Lê dinamicamente o plugin do Tailwind
+        with open(core_js_source, 'r', encoding='utf-8') as source_file:
+            js_content = source_file.read()
+            
+        os.makedirs(js_dir, exist_ok=True)
+        js_path = os.path.join(js_dir, 'logical-brutalism-tailwind.js')
+        with open(js_path, 'w', encoding='utf-8') as f:
+            f.write(js_content)
+        print(f" [+] TAILWIND PLUGIN INJECTED :: {js_path}")
+
     except Exception as e:
-        print(f" [ERR] Failed to write CSS Engine: {e}")
+        print(f" [ERR] Failed to copy core infrastructure files: {e}")
         sys.exit(1)
 
-    # 2. base.html template
+    # 2. Injetar base.html
     html_path = os.path.join(os.getcwd(), 'base.html')
     try:
         with open(html_path, 'w', encoding='utf-8') as f:
