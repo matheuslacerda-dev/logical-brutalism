@@ -6,7 +6,6 @@ Um sistema de design para contextos de alta densidade de informação. Cada deci
 
 **AUTOR:** Matheus Lacerda Ferreira  
 **ORIGEM:** Brasil :: Ilha Solteira  
-**DESTINO:** Cork, Irlanda :: MTU  
 **STATUS:** DOCUMENTO VIVO  
 
 ---
@@ -128,10 +127,15 @@ Acessibilidade é consistência com o Axioma I. O sistema possui contraste AAA e
 ## MANIFESTO DE EXECUÇÃO
 
 Construo porque tenho algo pra entregar.
+
 Recuso gradientes porque transição visual implica transição de estado, e estados são discretos.
+
 Recuso bordas arredondadas porque precisão tem arestas.
+
 Uso monospace para dados do sistema porque parsing requer alinhamento.
+
 Uso âmbar porque um sinal inequívoco vale mais que dez concorrentes.
+
 Não estou tentando impressionar. Estou tentando reduzir carga cognitiva.
 
 A interface é a lógica tornada perceptível.
