@@ -1,6 +1,6 @@
 # LOGICAL BRUTALISM v1.2.1 :: SYSTEM KERNEL
 
-> "If it doesn't solve a problem, it doesn't exist."
+> "What does not resolve, does not exist."
 
 **AUTHOR:** Matheus Lacerda Ferreira  
 **LICENSE:** MIT LICENSE (Copyright 2026)  
