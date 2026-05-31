@@ -4,7 +4,6 @@
 
 **AUTOR:** Matheus Lacerda Ferreira  
 **ORIGEM:** Brasil :: Ilha Solteira  
-**DESTINO:** Cork, Irlanda :: MTU  
 
 ## 00 :: TESE CENTRAL E ORIGEM
 
