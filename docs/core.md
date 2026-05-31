@@ -1,12 +1,11 @@
 # LOGICAL BRUTALISM v1.2.1 :: OFFICIAL DOCUMENTATION
 
-> "If it doesn't solve a problem, it doesn't exist."
+> "What does not resolve, does not exist."
 
 A design system for high-density information contexts. Every visual decision is justified by function. Technical truth is the highest form of aesthetics.
 
 **AUTHOR:** Matheus Lacerda Ferreira  
 **ORIGIN:** Brazil :: Ilha Solteira  
-**DESTINATION:** Cork, Ireland :: MTU  
 **STATUS:** LIVING DOCUMENT  
 
 ---
@@ -128,15 +127,25 @@ Accessibility is consistency with Axiom I. The system has documented AAA and AA 
 ## EXECUTION MANIFESTO
 
 I build because I have something to deliver.
-I refuse gradients because visual transitions imply state transitions, and states are discrete.
-I refuse rounded borders because precision has edges.
-I use monospace for system data because parsing requires alignment.
-I use amber because one unequivocal signal is worth more than ten competitors.
-I am not trying to impress. I am trying to reduce cognitive load.
 
-The interface is logic rendered perceptible.
+I refuse gradients because visual transition implies state transition,
+and states are discrete.
+
+I refuse rounded borders because the right angle communicates
+hierarchical precision without ambiguity.
+
+I use monospace for system data because parsing requires
+alignment, not long-duration readability.
+
+I use amber because a single, unambiguous signal
+is worth more than ten competing signals.
+
+I am not trying to impress.
+I am trying to reduce cognitive load.
+
+The interface is logic made perceptible.
 The structure is exposed.
 The plan is solid.
-Everything else is noise.
+The rest is noise.
 
 MISSION STATUS: **INEVITABLE.**
