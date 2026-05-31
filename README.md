@@ -1,4 +1,4 @@
-# LOGICAL BRUTALISM v1.2.1 :: SYSTEM KERNEL
+# LOGICAL BRUTALISM v1.3.0 :: SYSTEM KERNEL
 
 > "What does not resolve, does not exist."
 
@@ -36,19 +36,33 @@ The documentation requires strict reading. Choose your regional node matrix belo
 
 *   **[ [EN] Official English Registry ](docs/core.md)**
 *   **[ [PT] Brazilian Portuguese Root ](docs/pt/README.md)**
-*   **[ [ZH] Simplified Chinese / 逻辑粗野主义 ](docs/zh/README.md)**
-*   **[ [ES] Spanish / Brutalismo Lógico ](docs/es/README.md)**
-*   **[ [DE] German / Logischer Brutalismus ](docs/de/README.md)**
 
 *Note: The English structural tree is located under `/docs/` as the default fallback. Ensure adherence to the mandatory components: 3 Axioms, 5 Pillars, and 7 Generative Principles.*
 
-## 03 :: CHANGELOG v1.2.1 (THE DX REFINEMENT)
-- [ADD] Native global distribution via NPM (npx) and PyPI (pip) wrappers.
-- [ADD] Official Mobile Optimization (Radical Responsiveness).
-- [MOD] Core migration: PDF-first to Living HTML Documentation (Axiom II).
-- [MOD] Repository Structural Overhaul: Decoupling core distribution from showcase demos.
-- [ADD] Internationalization: Full English UI with multi-language documentation bridge (EN, PT, ES, DE, ZH).
-- [ADD] Python-based CLI Scaffolder (lb-init.py) for backend integration.
+## 03 :: CHANGELOG v1.3.0 (THE EVIDENCE & DISTRIBUTION UPDATE)
+
+### [ADD] :: DISTRIBUTION ENGINE
+- [ADD] Native global CLI scaffolding package distributable via NPM (`npx logical-brutalism`).
+- [ADD] Python-native ecosystem deployment engine distributable via PyPI (`pip install logical-brutalism`).
+- [ADD] Automated environment initializer (`create app`) reducing integration friction for FastAPI and Django.
+
+### [ADD] :: PERFORMANCE & BENCHMARKS
+- [ADD] Real-time Performance Dashboard comparing Logical Brutalism against legacy stacks (Tailwind, Bootstrap, React SPAs).
+- [ADD] Empirical metric instrumentation tracking: Render Time, HTML Payload Size, JS Overhead, and Memory Consumption.
+- [ADD] Stress-test benchmark scenarios utilizing high-volume data streams, large data tables, and rapid API responses under Polars and HTMX.
+
+### [MOD] :: IDENTITY & BRANDING
+- [MOD] Official Brand Manual formalizing the parametric layout matrix, color systems, grid constraints, and visual philosophy.
+- [MOD] Core typography migration: integration of Iosevka font as the absolute identity token for system data, exalting visual density and engineering authority.
+- [MOD] Core visual alignment introducing the Geometric Monolith as the single, unambiguous brand identifier.
+
+### [DEL] :: SCOPE PURGE & DOCUMENTATION CLEANUP
+- [DEL] Complete extraction of high-maintenance, low-return language nodes (Mandarin, German) to mitigate translation degradation.
+- [DEL] Enforced localization lockdown: technical specification limited strictly to English [EN] and Brazilian Portuguese [PT-BR].
+- [DEL] Elimination of purely declarative manifestos, shifting the repository focus from speculative aesthetics to verifiable software proof.
+
+---
+MISSION STATUS: PROVEN & DISTRIBUTED.
 
 ## 04 :: EXECUTION MANIFESTO
 
