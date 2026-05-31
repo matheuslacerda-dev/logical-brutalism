@@ -9,14 +9,18 @@ description = "Parametric Engine Deployment for Backend Infrastructure."
 authors = [
   { name="Matheus Lacerda Ferreira" }
 ]
-license = {text = "MIT"}
+license = "MIT"  # Corrigido para SPDX string limpa exigida pelo setuptools
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+    # Removido o License Classifier depreciado que causava o Warning
 ]
 
 [project.scripts]
 logical-brutalism = "cli.lb_init:main"
+
+# INJEÇÃO DA DIRETRIZ DE DISCOVERY DE ELITE
+[tool.setuptools]
+packages = ["cli", "core"] # Explícito: Inclui apenas o código executável e os assets. Ignora templates locais.

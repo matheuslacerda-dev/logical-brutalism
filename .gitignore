@@ -1,0 +1,45 @@
+# [SYSTEM :: PYTHON]
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+.env
+.env.*
+! .env.example
+
+# [SYSTEM :: BUILD & DISTRIBUTION]
+build/
+dist/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.python-version
+
+# [SYSTEM :: NODE / TAILWIND]
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+.stylelintcache
+
+# [SYSTEM :: OS / IDE]
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# [PROJECT SPECIFIC]
+# Pasta temporária de testes do CLI
+.temp/
+tmp/
