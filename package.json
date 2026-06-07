@@ -1,6 +1,6 @@
 {
   "name": "logical-brutalism",
-  "version": "1.2",
+  "version": "1.3.0",
   "description": "Parametric Engine Deployment for Backend Infrastructure.",
   "main": "core/logical-brutalism-tailwind.js",
   "style": "core/logical-brutalism.css",
