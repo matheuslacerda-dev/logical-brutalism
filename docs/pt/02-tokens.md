@@ -1,64 +1,67 @@
-# 02 :: SISTEMA DE CORES E ESPECIFICAÇÃO DE TOKENS
+# 02 :: Sistema de Cores e Tokens
 
-Os tokens CSS a seguir formam a camada de dados primordial. São rígidos e não suportam extensões como variações de canal alfa (`rgba()`) que não passem por justificação extrema em merge requests. A alteração indevida de um token destrói a hierarquia global.
+Os tokens CSS abaixo são a camada visual primária. São rígidos e não aceitam variações como `rgba()` sem justificativa extrema. Alterar um token sem motivo quebra a hierarquia global.
 
-## DIRETRIZES DE USO DOS TOKENS GLOBAIS
-É expressamente proibido injetar valores fixos hexadecimais in-line no código ou sobrescrever as propriedades nativas através de modificadores atômicos não listados. Utilize uso restrito das "CSS Custom Properties" mapeadas abaixo:
+## Regra de Ouro
 
-### TEMA 1: VOID-FIRST (DARK)
-Arquitetura primária para ambientes de visualização controlados e dashboards complexos.
+Nunca injete valores hexadecimais fixos diretamente no código. Nunca sobrescreva propriedades nativas com modificadores não listados. Use apenas as CSS Custom Properties abaixo.
 
-| CSS TOKEN | VALOR HEX | PROPOSIÇÃO E FUNÇÃO ARQUITETURAL | OVERHEAD COGNITIVO |
+## Tema 1: Void-First (Dark)
+
+Este é o tema principal. Use em dashboards, ambientes de visualização controlada e ferramentas internas.
+
+| CSS Token | Valor Hex | Função | Carga Visual |
 | :--- | :--- | :--- | :--- |
-| `--color-void` | `#0A0A0A` | Fundo primário não nulo. Base de cálculo do vazio absoluto. | Mínimo absoluto |
-| `--color-amber` | `#FFB000` | Ponto crítico de ação (Gatilho P3). Limitação: `Max(n=1)` por Viewport. Avaliação de Contraste text over void: `AAA (10.81:1)`. | Imediato de Máxima Alerta |
-| `--color-surface` | `#1E1E1E` | Delimitador de context-box e painéis. Define profundidade = `1` no Z-Axis. | Neutro Estrutural |
-| `--color-text` | `#888888` | Buffer de leitura estendido. Diminui a carga ocular no processamento de parágrafos. | Baixo |
-| `--color-white` | `#F0F0F0` | Dados brutos que não exigem ação, cabeçalhos de section e output direto do sistema. | Primário Moderado |
-| `--color-error` | `#FF4444` | Falha nos workers, timeout, `4xx` ou `5xx`. Bypass ativo no córtex pré-frontal via engajamento direto de "urgência". | Prioridade Crítica |
+| `--color-void` | `#0A0A0A` | Fundo primário. Base do vazio absoluto. | Mínima possível |
+| `--color-amber` | `#FFB000` | Ponto de ação crítica (Gatilho P3). Limite: **máximo 1 elemento por tela**. Contraste sobre o void: `AAA (10.81:1)`. | Alerta máximo, imediato |
+| `--color-surface` | `#1E1E1E` | Bordas de cards, painéis, separação de contexto. Profundidade `1` no eixo Z. | Neutro estrutural |
+| `--color-text` | `#888888` | Texto de leitura longa. Reduz fadiga ocular em parágrafos. | Baixa |
+| `--color-white` | `#F0F0F0` | Dados brutos, títulos de seção, output direto do sistema. | Moderada |
+| `--color-error` | `#FF4444` | Falhas, timeouts, erros `4xx`/`5xx`. Ativa leitura imediata de urgência. | Crítica |
 
-### TEMA 2: INFINITY-WHITE (LIGHT EXTENSION)
-Opcional, acionado exclusivamente em circunstâncias extrínsecas que imponham fadiga luminosa extrema. O fundo não atinge luminosidade total (`#FFFFFF`), garantindo sobrevida de retinas.
+## Tema 2: Infinity-White (Light)
 
-* `--color-infinity`: `#E3E3E3` (Industrial Concrete).
-* `--color-accent`: `#B35900` (Oxidized Amber. O ajuste lumínico necessário para manter o contraste `AAA`).
-* `--color-surface`: `#CCCCCC` (Drafting Board. Diferenciação discreta de paneis).
-* `--color-text`: `#4D4D4D` (Graphite HB. Semântica alinhada com cor de leitura longa).
-* `--color-ink`: `#0A0A0A` (Absolute Void. Letras cruciais e data points absolutos, absorve 100% da radiação visual focada).
-* `--color-error`: `#BE123C` (Emergency Stop. Valor em `hsl()` corrigido para não vibrar visualmente no canvas cinza).
+Opcional. Use apenas quando a luz ambiente for tão intensa que o tema escuro cause fadiga real.
 
-## TIPOGRAFIA
+* `--color-infinity`: `#E3E3E3` (Industrial Concrete)
+* `--color-accent`: `#B35900` (Oxidized Amber — ajustado para manter contraste `AAA` no claro)
+* `--color-surface`: `#CCCCCC` (Drafting Board — separação discreta de painéis)
+* `--color-text`: `#4D4D4D` (Graphite HB — leitura longa sem cansaço)
+* `--color-ink`: `#0A0A0A` (Absolute Void — dados críticos e absolutos, absorve 100% da atenção)
+* `--color-error`: `#BE123C` (Emergency Stop — calibrado para não vibrar sobre o cinza)
 
-As fontes não emitem sentimentos; processam "arrays" de letras. Duas instâncias paramétricas:
+## Tipografia
+
+Uma família, dois pesos. Sem exceção. A partir da **v1.3**, o sistema migrou para **Iosevka** — uma fonte desenhada para densidade máxima de informação.
 
 ### 1. A Camada Humana
-**Font-Family Definida:** `Inter`
-**Variável CSS:** `--font-struct`
-**Aplicação:** Artigos, instruções macro, meta descrições.
-**Justificativa:** Desenvolvida microscopicamente para leitura digital ótima baseada em alturas-x elevadas e abertura nos terminais, minimiza as taxas de erros no ato de sacada retiniana pela página.
+**Fonte:** `Iosevka Aile`  
+**Token:** `--font-struct`  
+**Uso:** Artigos, instruções, descrições, qualquer coisa que o usuário precise ler como texto.  
+**Por que:** Mantém a densidade e clareza da família Iosevka, mas com proporções otimizadas para leitura contínua. Altura-x elevada e terminais abertos minimizam erros de leitura.
 
 ### 2. A Camada Lógica
-**Font-Family Definida:** `JetBrains Mono`
-**Variável CSS:** `--font-code`
-**Aplicação:** Componentes iterativos, labels de ações, strings JSON, UUIDs, carimbos temporais, tags analíticas da infraestrutura.
-**Justificativa:** Os eixos de alinhamento vertical da Mono bloqueiam a leitura fluida mas garantem `100%` de identificação paramétrica `O(1)` ocular de um dado contra outro. Ausência de ambiguidade nas ligaduras: `1`, `I`, `l` não competem.
+**Fonte:** `Iosevka` (Mono)  
+**Token:** `--font-code`  
+**Uso:** Labels de ação, strings JSON, UUIDs, timestamps, tags de infraestrutura, código.  
+**Por que:** Alinhamento vertical fixo. Cada caractere ocupa o mesmo espaço. Não há ambiguidade entre `1`, `I` e `l`. Identificação instantânea de um dado contra outro. A Iosevka foi desenhada especificamente para caber mais caracteres por linha sem perder legibilidade — essencial para dashboards de alta densidade.
 
-## ESCALAS LINEARES E VETORES DE COMPOSIÇÃO
+## Escalas e Espaçamento
 
-As dimensões operam através de predeterminações matemáticas, base fundamental `1rem` = `16px`.
+Base: `1rem` = `16px`.
 
-**Escala Tipográfica (Tamanho / Line-Height):**
+**Tipografia (Tamanho / Altura da Linha):**
 * `Display`: 2.5rem (40px) / `1.1`
 * `Title`: 1.375rem (22px) / `1.3`
 * `Body`: 1rem (16px) / `1.5`
 * `Small`: 0.875rem (14px) / `1.5`
 * `Label/Code`: 0.75rem (12px) / `1.0`
 
-**Espaçamento Espacial (O Silêncio Estrutural):**
-As margens declaram vizinhança lógica; um "padding" determina agrupamento funcional (Lei de Gestalt implementada no DOM):
-* `--space-1` = `0.25rem` (4px): Ligações subatômicas (ex: ícone ao lado de texto no box)
-* `--space-2` = `0.5rem` (8px): Distância base em labels.
-* `--space-3` = `1rem` (16px): Identidade primária de bloco.
-* `--space-4` = `1.5rem` (24px): Divisão de componentes interdependentes.
-* `--space-5` = `2rem` (32px): Isolamento de Seções.
-* `--space-6` = `3rem` (48px): Arquitetura Macro, rompimento do fluxo de leitura do usuário.
+**Espaçamento (O Silêncio Estrutural):**
+Margens declaram vizinhança; padding declara agrupamento (Lei de Gestalt no DOM):
+* `--space-1` = `0.25rem` (4px): Ícone ao lado de texto
+* `--space-2` = `0.5rem` (8px): Labels internos
+* `--space-3` = `1rem` (16px): Bloco primário
+* `--space-4` = `1.5rem` (24px): Componentes interdependentes
+* `--space-5` = `2rem` (32px): Isolamento de seções
+* `--space-6` = `3rem` (48px): Arquitetura macro, quebra de fluxo de leitura

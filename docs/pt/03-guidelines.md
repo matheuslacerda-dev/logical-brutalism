@@ -1,30 +1,40 @@
-# 03 :: PRINCÍPIOS GERATIVOS E DIRETRIZES DE EXECUÇÃO
+# 03 :: Princípios Gerativos e Diretrizes de Execução
 
-O desenvolvimento front-end é governado através desses sete processadores mnemônicos inquebráveis. Uma Pull Request que ofenda um princípio gerativo é estaticamente rejeitada, assumindo falha de integridade.
+O desenvolvimento front-end segue sete regras. Uma Pull Request que quebra qualquer uma delas é rejeitada automaticamente.
 
-## P-01 :: COR SEGUE ESTADO (COLOR_FOLLOWS_STATE)
-Nenhuma propriedade `background-color` ou `color` obedece a anseios estéticos. Deve-se avaliar a precondição na State Machine: estado "neutro", estado "aviso", estado "bloqueado"? Apenas e após isso há injeção de classes de token. Decorativos são anti-matemáticos.
+## P-01 :: Cor Segue Estado
 
-## P-02 :: ÂNGULO COMO COMPROMISSO (BORDER_RADIUS_ZERO)
-Regra primária CSS: `* { border-radius: 0 !important; }`. O sistema digital opera em malhas quadriculares por padrão nativo cartesiano (`X` e `Y`). Simular curvas introduz anti-aliasing ineficiente e cria percepções psicológicas de suavização sobre instâncias que falham catastroficamente no kernel. O ângulo de 90° explicita compromisso estrutural rígido.
+Nenhuma cor é escolhida por gosto. Antes de aplicar `background-color` ou `color`, defina o estado funcional: neutro, aviso, bloqueado, ativo? Só depois injete o token. Decorativo sem função é proibido.
 
-## P-03 :: MONO PARA MÁQUINA, SANS PARA HUMANO (SEMANTIC_DISTINCTION)
-A restrição da diretiva determina que o cérebro humano mude de estado automático. O bloco visual em `--font-code` imediatamente informa que o dado exige escrutínio analítico e tomada de decisão. O conteúdo em `--font-struct` engaja absorção passiva de leitura contínua. Misturar suas aplicações equivale a mesclar as camadas física e de aplicação no modelo OSI da interface.
+## P-02 :: Ângulo Como Compromisso
 
-## P-04 :: ÂMBAR UMA VEZ POR TELA (AMBER_SINGULARITY)
-Múltiplas submissões conflitam fluxos. Quando o sistema apresenta ao usuário a bifurcação primária para proceder `(Next Node)`, o token `--color-amber` tem a obrigação de dominar isoladamente a tela. Uma concorrência com o mesmo token em dois pontos destruirá imediatamente a indexação hierárquica mental e inserirá inércia decisória.
+Regra CSS base: `* { border-radius: 0 !important; }`. O digital opera em grids cartesianos (`X` e `Y`). Curvas criam anti-aliasing desnecessário e dão a falsa sensação de suavidade onde o sistema é rígido. Ângulo de 90° é compromisso estrutural explícito.
 
-## P-05 :: ESPAÇO É SILÊNCIO (SPACE_IS_SILENCE)
-Módulos não flutuam aleatoriamente. Se `var(--space-1)` é invocado, declarou-se proximidade intrínseca; as variáveis computam como um único objeto sintático em arrays do cérebro de quem lê. Em contrapartida, justificar layout apenas distribuindo vazios irrestritamente caracteriza falha de modelo lógico (ex `justify-content: space-evenly`). O branco da tela dita a barreira sonora.
+## P-03 :: Mono Para Máquina, Sans Para Humano
 
-## P-06 :: FEEDBACK IMEDIATO (NO_TRANSITION)
-Determinação paramétrica: `* { transition: none !important; animation: none !important; }` (A exceção é alocada ao Componente Loader Padrão).
-Máquinas de estado finito executam suas transições de estado no tempo de clock sem retardamento artificial. Um processamento CSS simulando curvas bézier via tempo atrasa intencionalmente o pipeline e distorce a confiabilidade do sistema. Interfaces estéreis exigem mudanças instantâneas. Clicar e reagir possui um delta T mínimo tendendo a `0`.
+A restrição força o cérebro a mudar de modo. Quando o usuário vê `--font-code` (Iosevka Mono), sabe que aquele dado exige atenção analítica. Quando vê `--font-struct` (Iosevka Aile), sabe que pode ler fluidamente. Misturar os papéis é como misturar camadas físicas e de aplicação no modelo OSI.
 
-## P-07 :: ASCII ANTES DE ÍCONE (ASCII_FIRST_METRIC)
-Lógica anti-dependência de assets estáticos (ex. SVG pesados, bibliotecas React-icons, font-awesome).
-Vetores:
-- Fechar Instância: `[x]`
-- Extensão em Accordion: `[+]` / `[-]`
+## P-04 :: Âmbar Uma Vez Por Tela
+
+Múltiplos pontos âmbar competem entre si e destroem a hierarquia visual. Quando o sistema apresenta a bifurcação principal `(Next Node)`, o token `--color-amber` deve dominar sozinho a tela. Se houver concorrência, o usuário hesita.
+
+## P-05 :: Espaço É Silêncio
+
+Módulos não flutuam sem lógica. Se você usa `var(--space-1)`, está declarando proximidade intrínseca — o cérebro lê como um único objeto. Distribuir vazios aleatoriamente (ex: `justify-content: space-evenly`) sem critério é falha de modelo lógico. O branco da tela é barreira sonora.
+
+## P-06 :: Feedback Imediato
+
+Determinação paramétrica: `* { transition: none !important; animation: none !important; }` (exceto o Componente Loader Padrão).
+
+Máquinas de estado transicionam no tempo de clock. Delay artificial em CSS distorce a confiabilidade do sistema. Clicar e reagir deve ter delta T tendendo a zero. Estados são discretos: `[1 | 0]`.
+
+## P-07 :: ASCII Antes de Ícone
+
+Lógica anti-dependência de assets pesados (SVGs, React-icons, Font Awesome).
+
+Vetores padrão:
+- Fechar: `[x]`
+- Expandir/Recolher: `[+]` / `[-]`
 - Ação Processual: `[>]` ou `->`
-A carga da página decai, o render browser dispensa request no DOM virtual, e o parser emula interfaces POSIX/Unix que nunca depreciam a estética informacional base.
+
+A carga da página cai, o browser dispensa requests extras, e o parser emula interfaces POSIX/Unix que nunca saem de moda.

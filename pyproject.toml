@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "logical-brutalism"
-version = "1.2.1"
+version = "1.2"
 description = "Parametric Engine Deployment for Backend Infrastructure."
 authors = [
   { name="Matheus Lacerda Ferreira" }
@@ -23,4 +23,7 @@ logical-brutalism = "cli.lb_init:main"
 
 # INJEÇÃO DA DIRETRIZ DE DISCOVERY DE ELITE
 [tool.setuptools]
-packages = ["cli", "core"] # Explícito: Inclui apenas o código executável e os assets. Ignora templates locais.
+packages = ["cli", "core"]
+
+[tool.setuptools.package-data]
+core = ["*.css", "*.js", "*.json"]

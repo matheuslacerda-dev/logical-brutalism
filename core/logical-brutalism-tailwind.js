@@ -1,16 +1,17 @@
 /**
- * LOGICAL BRUTALISM :: TAILWIND PLUGIN v1.2
+ * LOGICAL BRUTALISM :: TAILWIND PLUGIN v1.3
  * AUTHOR: Matheus Lacerda Ferreira
  * 
  * Injecting the parametric matrix into Tailwind CSS.
  * Zero roundness. Zero transition. Pure structure.
+ * v1.3: Migrated to Iosevka font family.
  */
 
 const plugin = require('tailwindcss/plugin');
 
 module.exports = plugin(
   function ({ addBase }) {
-    // Agressive Global Override to disable all rounding and transitions
+    // Aggressive Global Override to disable all rounding and transitions
     addBase({
       '*': {
         'border-radius': '0 !important',
@@ -55,8 +56,8 @@ module.exports = plugin(
           '6': '3rem',
         },
         fontFamily: {
-          'struct': ['Inter', 'sans-serif'],
-          'code': ['JetBrains Mono', 'monospace'],
+          'struct': ['Iosevka Aile', 'sans-serif'],
+          'code': ['Iosevka', 'monospace'],
         }
       },
     },

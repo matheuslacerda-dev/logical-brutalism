@@ -10,8 +10,8 @@ import os
 import sys
 
 # ANSI CORE COLORS
-C_AMBER = '\033[38;5;214m' # Aprox #FFB000 (Oxidized Amber)
-C_VOID = '\033[0m'
+C_AMBER = "[38;5;214m"  # Approx #FFB000 (Oxidized Amber)
+C_VOID = "[0m"
 
 ASCII_ART = rf"""{C_AMBER}
   _      ____   _____ _____ _____          _      
@@ -20,15 +20,15 @@ ASCII_ART = rf"""{C_AMBER}
  | |   | |  | | | |_ | | || |      / /\ \ | |     
  | |___| |__| | |__| |_| || |____ / ____ \| |____ 
  |______\____/ \_____|_____\_____/_/    \_\______|
-                                                  
+
   ____  _____  _    _ _______       _      _____  _____ __  __ 
  |  _ \|  __ \| |  | |__   __|/\   | |    |_   _|/ ____|  \/  |
  | |_) | |__) | |  | |  | |  /  \  | |      | | | (___ | \  / |
  |  _ <|  _  /| |  | |  | | / /\ \ | |      | |  \___ \| |\/| |
  | |_) | | \ \| |__| |  | |/ ____ \| |____ _| |_ ____) | |  | |
- |____/|_|  \_\\____/   |_/_/    \_\______|_____|_____/|_|  |_|
-                                                               
- :: IF IT DOES NOT SOLVE IT, IT DOES NOT EXIST ::{C_VOID}
+ |____/|_|  \_\____/   |_/_/    \_\______|_____|_____/|_|  |_|
+
+ :: WHAT DOES NOT RESOLVE, DOES NOT EXIST. ::{C_VOID}
 """
 
 HTML_PAYLOAD = """<!DOCTYPE html>
@@ -37,23 +37,23 @@ HTML_PAYLOAD = """<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Logical Brutalism :: Engineering Instance</title>
-  
+
   <!-- Absolute Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Iosevka+Aile:wght@400;500;600;700&family=Iosevka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <!-- Parasitic Dependencies (HTMX/Alpine) -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-  
+
   <!-- Central Visual Matrix -->
   <link rel="stylesheet" href="/static/css/logical-brutalism.css">
-  
+
   <!-- Tailwind Hook with Brutalist Plugin -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="/static/js/logical-brutalism-tailwind.js"></script>
-  
+
   <script>
     tailwind.config = {
       theme: {
@@ -67,8 +67,8 @@ HTML_PAYLOAD = """<!DOCTYPE html>
             'lb-error': 'var(--color-error)',
           },
           fontFamily: {
-            'struct': ['Inter', 'sans-serif'],
-            'code': ['JetBrains Mono', 'monospace'],
+            'struct': ['Iosevka Aile', 'sans-serif'],
+            'code': ['Iosevka', 'monospace'],
           }
         }
       },
@@ -103,37 +103,42 @@ HTML_PAYLOAD = """<!DOCTYPE html>
 </html>
 """
 
+
 def main():
     print(ASCII_ART)
     print(f"{C_AMBER}[STARTING DEPLOYMENT PROTOCOL]{C_VOID}\n")
 
-    # Caminhos dinâmicos baseados no diretório do instalador (distribuição independente de OS)
+    # Dynamic paths based on installer directory (OS-independent distribution)
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    core_css_source = os.path.join(script_dir, '..', 'core', 'logical-brutalism.css')
-    core_js_source = os.path.join(script_dir, '..', 'core', 'logical-brutalism-tailwind.js')
+    core_css_source = os.path.join(
+        script_dir, "..", "core", "logical-brutalism.css"
+    )
+    core_js_source = os.path.join(
+        script_dir, "..", "core", "logical-brutalism-tailwind.js"
+    )
 
-    # 1. Copiar recursos CSS e JS do Core para a infraestrutura alvo
-    css_dir = os.path.join(os.getcwd(), 'static', 'css')
-    js_dir = os.path.join(os.getcwd(), 'static', 'js')
-    
+    # 1. Copy CSS and JS core resources to target infrastructure
+    css_dir = os.path.join(os.getcwd(), "static", "css")
+    js_dir = os.path.join(os.getcwd(), "static", "js")
+
     try:
-        # Lê dinamicamente o arquivo primário de CSS
-        with open(core_css_source, 'r', encoding='utf-8') as source_file:
+        # Read primary CSS file dynamically
+        with open(core_css_source, "r", encoding="utf-8") as source_file:
             css_content = source_file.read()
-            
+
         os.makedirs(css_dir, exist_ok=True)
-        css_path = os.path.join(css_dir, 'logical-brutalism.css')
-        with open(css_path, 'w', encoding='utf-8') as f:
+        css_path = os.path.join(css_dir, "logical-brutalism.css")
+        with open(css_path, "w", encoding="utf-8") as f:
             f.write(css_content)
         print(f" [+] ROOT CSS MATRIX INJECTED :: {css_path}")
 
-        # Lê dinamicamente o plugin do Tailwind
-        with open(core_js_source, 'r', encoding='utf-8') as source_file:
+        # Read Tailwind plugin dynamically
+        with open(core_js_source, "r", encoding="utf-8") as source_file:
             js_content = source_file.read()
-            
+
         os.makedirs(js_dir, exist_ok=True)
-        js_path = os.path.join(js_dir, 'logical-brutalism-tailwind.js')
-        with open(js_path, 'w', encoding='utf-8') as f:
+        js_path = os.path.join(js_dir, "logical-brutalism-tailwind.js")
+        with open(js_path, "w", encoding="utf-8") as f:
             f.write(js_content)
         print(f" [+] TAILWIND PLUGIN INJECTED :: {js_path}")
 
@@ -141,18 +146,21 @@ def main():
         print(f" [ERR] Failed to copy core infrastructure files: {e}")
         sys.exit(1)
 
-    # 2. Injetar base.html
-    html_path = os.path.join(os.getcwd(), 'base.html')
+    # 2. Inject base.html
+    html_path = os.path.join(os.getcwd(), "base.html")
     try:
-        with open(html_path, 'w', encoding='utf-8') as f:
+        with open(html_path, "w", encoding="utf-8") as f:
             f.write(HTML_PAYLOAD)
         print(f" [+] ROOT TEMPLATE (BASE.HTML) INJECTED :: {html_path}")
     except Exception as e:
         print(f" [ERR] Failed to write base HTML: {e}")
         sys.exit(1)
-        
-    print(f"\n{C_AMBER}[DEPLOYMENT COMPLETE IN O(1)]{C_VOID}")
-    print("The B2B infrastructure has been toggled. Returning to primary shell...\n")
 
-if __name__ == '__main__':
+    print(f"\n{C_AMBER}[DEPLOYMENT COMPLETE IN O(1)]{C_VOID}")
+    print(
+        "The B2B infrastructure has been toggled. Returning to primary shell...\n"
+    )
+
+
+if __name__ == "__main__":
     main()

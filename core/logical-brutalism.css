@@ -1,10 +1,11 @@
 /* =========================================================================
-   LOGICAL BRUTALISM :: CORE ENGINE v1.2
+   LOGICAL BRUTALISM :: CORE ENGINE v1.3
    AUTHOR: Matheus Lacerda Ferreira
-   "O que não resolve, não existe."
+   "What does not resolve, does not exist."
+   v1.3: Migrated to Iosevka font family.
    ========================================================================= */
 
-/* 1. AGRESSIVE RESET & GRID STABILITY */
+/* 1. AGGRESSIVE RESET & GRID STABILITY */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -41,9 +42,9 @@ img, svg, video, canvas, audio, iframe, embed, object {
   --color-white: #F0F0F0;
   --color-error: #FF4444;
 
-  --font-struct: 'Inter', sans-serif;
-  --font-code: 'JetBrains Mono', monospace;
-  
+  --font-struct: 'Iosevka Aile', sans-serif;
+  --font-code: 'Iosevka', monospace;
+
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 1rem;

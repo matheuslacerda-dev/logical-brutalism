@@ -1,30 +1,40 @@
-# 03 :: GENERATIVE PRINCIPLES AND EXECUTION GUIDELINES
+# 03 :: Generative Principles and Execution Guidelines
 
-Front-end development is governed via these seven unbreakable mnemonic processors. A Pull Request offending a generative principle is statically rejected, assuming integrity failure.
+Front-end development follows seven rules. A Pull Request that breaks any of them is automatically rejected.
 
-## P-01 :: COLOR FOLLOWS STATE
-No `background-color` or `color` property obeys aesthetic yearnings. The precondition in the State Machine must be evaluated: "neutral" state, "warning" state, "blocked" state? Only after this is there injection of token classes. Decoratives are anti-mathematical.
+## P-01 :: Color Follows State
 
-## P-02 :: ANGLE AS COMMITMENT (BORDER_RADIUS_ZERO)
-Primary CSS rule: `* { border-radius: 0 !important; }`. The digital system operates on square grids by native Cartesian default (`X` and `Y`). Simulating curves introduces inefficient anti-aliasing and creates psychological perceptions of softening on instances that fail catastrophically in the kernel. The 90° angle specifies rigid structural commitment.
+No color is chosen by taste. Before applying `background-color` or `color`, define the functional state: neutral, warning, blocked, active? Only then inject the token. Decorative without function is forbidden.
 
-## P-03 :: MONO FOR MACHINE, SANS FOR HUMAN (SEMANTIC_DISTINCTION)
-The directive restriction dictates the human brain changes automatic states. The visual block in `--font-code` immediately informs that the data requires analytical scrutiny and decision making. Content in `--font-struct` engages passive absorption of continuous reading. Mixing their applications is equivalent to merging the physical and application layers in the interface's OSI model.
+## P-02 :: Angle as Commitment
 
-## P-04 :: AMBER ONCE PER SCREEN (AMBER_SINGULARITY)
-Multiple submissions conflict flows. When the system presents the user the primary fork to proceed `(Next Node)`, the `--color-amber` token has the obligation to dominate the screen in isolation. Concurrency with the same token in two points will immediately destroy mental hierarchical indexing and insert decision inertia.
+Base CSS rule: `* { border-radius: 0 !important; }`. The digital operates on Cartesian grids (`X` and `Y`). Curves create unnecessary anti-aliasing and give a false sense of softness where the system is rigid. A 90° angle is explicit structural commitment.
 
-## P-05 :: SPACE IS SILENCE
-Modules do not float randomly. If `var(--space-1)` is invoked, intrinsic proximity was declared; variables compute as a single syntactic object in the arrays of the reader's brain. Conversely, justifying layout merely by unrestricted distribution of emptiness characterizes a logical model failure (e.g., `justify-content: space-evenly`). White space on the screen dictates the sound barrier.
+## P-03 :: Mono for Machine, Sans for Human
 
-## P-06 :: IMMEDIATE FEEDBACK (NO_TRANSITION)
-Parametric determination: `* { transition: none !important; animation: none !important; }` (The exception is allocated to the Standard Loader Component).
-Finite state machines execute their state transitions in clock time without artificial delay. A CSS process simulating bezier curves artificially delays the pipeline and distorts system reliability. Sterile interfaces demand instantaneous changes. Clicking and reacting has a minimum delta T tending strictly to `0`.
+The restriction forces the brain to switch modes. When the user sees `--font-code` (Iosevka Mono), they know that data demands analytical attention. When they see `--font-struct` (Iosevka Aile), they know they can read fluidly. Mixing the roles is like mixing physical and application layers in the OSI model.
 
-## P-07 :: ASCII BEFORE ICON (ASCII_FIRST_METRIC)
-Logic of anti-dependency on static assets (e.g., heavy SVGs, React-icon libraries, font-awesome).
-Vectors:
-- Close Instance: `[x]`
-- Accordion Extension: `[+]` / `[-]`
+## P-04 :: Amber Once Per Screen
+
+Multiple amber points compete with each other and destroy visual hierarchy. When the system presents the main fork `(Next Node)`, the `--color-amber` token must dominate the screen alone. If there is competition, the user hesitates.
+
+## P-05 :: Space Is Silence
+
+Modules do not float without logic. If you use `var(--space-1)`, you are declaring intrinsic proximity — the brain reads it as a single object. Distributing voids randomly (e.g., `justify-content: space-evenly`) without criteria is a logical model failure. The screen's white is a sound barrier.
+
+## P-06 :: Immediate Feedback
+
+Parametric determination: `* { transition: none !important; animation: none !important; }` (except for the Standard Loader Component).
+
+State machines transition at clock time. Artificial delay in CSS distorts system reliability. Clicking and reacting must have delta T tending to zero. States are discrete: `[1 | 0]`.
+
+## P-07 :: ASCII Before Icon
+
+Anti-dependency logic on heavy assets (SVGs, React-icons, Font Awesome).
+
+Standard vectors:
+- Close: `[x]`
+- Expand/Collapse: `[+]` / `[-]`
 - Procedural Action: `[>]` or `->`
-Page load drops, browser render waives request in the virtual DOM, and the parser emulates POSIX/Unix interfaces that never deprecate the fundamental informational layout.
+
+Page load drops, the browser skips extra requests, and the parser emulates POSIX/Unix interfaces that never go out of style.

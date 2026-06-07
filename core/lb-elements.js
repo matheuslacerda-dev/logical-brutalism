@@ -1,24 +1,24 @@
 /**
  * LOGICAL BRUTALISM :: WEB COMPONENTS (LB-ELEMENTS)
  * Author: Matheus Lacerda Ferreira
- * Descrição: Componentes estendidos da API nativa do navegador (Vanilla JS).
- * Filosofia: Zero abstração, máxima integridade semântica.
+ * Description: Extended components from the browser's native API (Vanilla JS).
+ * Philosophy: Zero abstraction, maximum semantic integrity.
  */
 
 class LBButton extends HTMLElement {
   connectedCallback() {
-    // Aplica o estilo paramétrico oficial
+    // Apply official parametric style
     this.classList.add('btn');
-    
-    // Força semântica de botão e acessibilidade de teclado
+
+    // Enforce button semantics and keyboard accessibility
     if (!this.hasAttribute('role')) {
       this.setAttribute('role', 'button');
     }
     if (!this.hasAttribute('tabindex')) {
       this.setAttribute('tabindex', '0');
     }
-    
-    // Disparo coerente com o comportamento nativo de botões 
+
+    // Coherent trigger matching native button behavior
     this.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -28,5 +28,5 @@ class LBButton extends HTMLElement {
   }
 }
 
-// Registro no escopo da janela do navegador
+// Register in the browser window scope
 customElements.define('lb-button', LBButton);

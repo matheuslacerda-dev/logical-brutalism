@@ -1,25 +1,25 @@
-# BRUTALISMO LÓGICO v1.2.1
+# Brutalismo Lógico v1.3.0
 
 > "O que não resolve, não existe."
 
-**AUTOR:** Matheus Lacerda Ferreira  
-**ORIGEM:** Brasil :: Ilha Solteira  
+**Autor:** Matheus Lacerda Ferreira  
+**Origem:** Brasil :: Ilha Solteira
 
-## 00 :: TESE CENTRAL E ORIGEM
+## 00 :: Tese Central e Origem
 
-O Brutalismo Lógico não nasceu de conjecturas estéticas. Sua origem reside na necessidade de garantir operacionalidade em ambientes de instabilidade. A métrica inegociável é a lógica matemática e estrutural de uma interface. Se uma função `X` é disparada, o feedback e a consequência `Y` devem ser inevitáveis e imediatos. Isso não é uma escolha de design frívola; trata-se de arquitetura de sobrevivência digital.
+O Brutalismo Lógico não nasceu em um café teorizando sobre estética. Nasceu da necessidade. Em ambientes de instabilidade, a única métrica que não falha é a lógica. Se o plano X é executado, o resultado Y é inevitável. Isso não é frieza, é sobrevivência.
 
-Assim como a arquitetura estruturalista e o brutalismo clássico expõem os materiais brutos (como o concreto e o aço) recusando qualquer forma de revestimento ou gesso decorativo, o Brutalismo Lógico força a engenharia de interface a expor sua lógica intrínseca. Elimina-se toda camada visual que contradiga ou mascare a função. Não existe ornamento desprovido de informação.
+Assim como a arquitetura brutalista expõe o concreto e recusa revestimento decorativo, o Brutalismo Lógico expõe a lógica do software. Sem camadas visuais que contradigam a função, sem ornamento sem informação.
 
-## MATRIZ DE COMPARAÇÃO DE ABORDAGENS
+## Matriz de Comparação de Abordagens
 
-| ABORDAGEM | CRITÉRIO OPERACIONAL | RESULTADO ESTRUTURAL | ALINHAMENTO |
+| Abordagem | Critério Operacional | Resultado Estrutural | Alinhamento |
 | :--- | :--- | :--- | :--- |
 | **Minimalismo Tradicional** | Remoção de elementos até se atingir a "elegância". | Estética adquirida puramente por subtração visual. | Falso positivo para eficiência. |
 | **Brutalismo Web** | Remoção de abstrações para criar intenção de crueza. | Feiura e desordem intencional (Web 1.0). Estética como protesto. | Subótimo. |
-| **BRUTALISMO LÓGICO** | **Eliminação de instâncias até restar apenas a função.** | **Verdade Estrutural absoluta. Informação pura.** | **Ideal.** |
+| **Brutalismo Lógico** | **Eliminação de instâncias até restar apenas a função.** | **Verdade Estrutural absoluta. Informação pura.** | **Ideal.** |
 
-## ARQUITETURA DO REPOSITÓRIO
+## Arquitetura do Repositório
 
 A documentação deste sistema está estruturada nos seguintes eixos fundamentais. O estudo sequencial é **mandatório**:
 
@@ -30,11 +30,12 @@ A documentação deste sistema está estruturada nos seguintes eixos fundamentai
 * [`/docs/05-accessibility.md`](docs/05-accessibility.md) -> Auditoria AAA e consistência neural.
 * [`/docs/core.md`](docs/core.md) -> Manifesto Consolidado original.
 
-## MANIFESTO DE EXECUÇÃO
+## Manifesto de Execução
 
 O processo de construção baseia-se em entregáveis. O desenvolvimento ocorre estritamente dentro da matriz paramétrica abaixo.
-Transições visuais interpoladas indicam transições de estado ambíguas. Os estados são digitalmente discretos; a interface os reflete `[1 | 0]`. Bordas não são suavizadas, precisão computacional tem arestas por princípio lógico. O parsing cerebral em telas de alta densidade se beneficia intrinsecamente do uso de fontes monospace `(JetBrains Mono)`. O sinal luminoso `(--color-amber)` deve possuir a propriedade de inequivocidade; a presença de múltiplos chamados destrói o conceito de hierarquia.
 
-A estrutura foi exposta. O plano arquitetônico é sólido. A ausência do resto classifica-o categoricamente como ruído.
+Transições visuais interpoladas indicam transições de estado ambíguas. Os estados são digitalmente discretos; a interface os reflete `[1 | 0]`. Bordas não são suavizadas, precisão computacional tem arestas por princípio lógico. O parsing cerebral em telas de alta densidade se beneficia intrinsecamente do uso de fontes monospace `(Iosevka)`. O sinal luminoso `(--color-amber)` deve possuir a propriedade de inequivocidade; a presença de múltiplos chamados destrói o conceito de hierarquia.
 
-STATUS DA MISSÃO: **INEVITÁVEL.**
+A estrutura está exposta. O plano é sólido. O resto é ruído.
+
+Status da Missão: **INEVITÁVEL.**
