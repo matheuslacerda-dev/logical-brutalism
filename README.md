@@ -1,4 +1,4 @@
-# LOGICAL BRUTALISM v1.3.0 :: SYSTEM KERNEL
+# Logical Brutalism: A Parametric B2B Design System by Matheus Lacerda
 
 > "What does not resolve, does not exist."
 
