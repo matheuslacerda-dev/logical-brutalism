@@ -23,12 +23,12 @@ Just as structuralist architecture and classic brutalism expose raw materials (s
 
 This system's documentation is structured in the following fundamental axes. Sequential study is **mandatory**:
 
-* [`/docs/01-foundations.md`](docs/01-foundations.md) -> The Three Axioms and the Five Pillars.
-* [`/docs/02-tokens.md`](docs/02-tokens.md) -> The visual source code: Hexadecimals and Rigorous Typography.
-* [`/docs/03-guidelines.md`](docs/03-guidelines.md) -> Execution Guidelines and Generative Rules (P-01 to P-07).
-* [`/docs/04-components.md`](docs/04-components.md) -> Mathematical interface specifications.
-* [`/docs/05-accessibility.md`](docs/05-accessibility.md) -> AAA audit and neural consistency.
-* [`/docs/core.md`](docs/core.md) -> Original consolidated manifesto.
+* [`01-foundations.md`](01-foundations.md) -> The Three Axioms and the Five Pillars.
+* [`02-tokens.md`](02-tokens.md) -> The visual source code: Hexadecimals and Rigorous Typography.
+* [`03-guidelines.md`](03-guidelines.md) -> Execution Guidelines and Generative Rules (P-01 to P-07).
+* [`04-components.md`](04-components.md) -> Mathematical interface specifications.
+* [`05-accessibility.md`](05-accessibility.md) -> AAA audit and neural consistency.
+* [`core.md`](core.md) -> Original consolidated manifesto.
 
 ## Execution Manifesto
 
