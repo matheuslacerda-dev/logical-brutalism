@@ -2,7 +2,6 @@
 
 > "What does not resolve, does not exist."
 
-**AUTHOR:** Matheus Lacerda Ferreira  
 **LICENSE:** MIT LICENSE (Copyright 2026)  
 **STATUS:** LIVING DOCUMENT  
 
