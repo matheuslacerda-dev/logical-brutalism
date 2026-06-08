@@ -23,12 +23,12 @@ Assim como a arquitetura brutalista expõe o concreto e recusa revestimento deco
 
 A documentação deste sistema está estruturada nos seguintes eixos fundamentais. O estudo sequencial é **mandatório**:
 
-* [`/docs/01-foundations.md`](docs/01-foundations.md) -> Os Três Axiomas e os Cinco Pilares.
-* [`/docs/02-tokens.md`](docs/02-tokens.md) -> O código-fonte visual: Hexadecimais e Tipografia Rigorosa.
-* [`/docs/03-guidelines.md`](docs/03-guidelines.md) -> Diretrizes de Execução e Regras Gerativas (P-01 a P-07).
-* [`/docs/04-components.md`](docs/04-components.md) -> Especificações matemáticas da interface.
-* [`/docs/05-accessibility.md`](docs/05-accessibility.md) -> Auditoria AAA e consistência neural.
-* [`/docs/core.md`](docs/core.md) -> Manifesto Consolidado original.
+* [`01-foundations.md`](01-foundations.md) -> Os Três Axiomas e os Cinco Pilares.
+* [`02-tokens.md`](02-tokens.md) -> O código-fonte visual: Hexadecimais e Tipografia Rigorosa.
+* [`03-guidelines.md`](03-guidelines.md) -> Diretrizes de Execução e Regras Gerativas (P-01 a P-07).
+* [`04-components.md`](04-components.md) -> Especificações matemáticas da interface.
+* [`05-accessibility.md`](05-accessibility.md) -> Auditoria AAA e consistência neural.
+* [`core.md`](core.md) -> Manifesto Consolidado original.
 
 ## Manifesto de Execução
 
