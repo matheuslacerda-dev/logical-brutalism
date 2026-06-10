@@ -1,4 +1,4 @@
-# Logical Brutalism: A Parametric B2B Design System by Matheus Lacerda
+# Logical Brutalism: A Design System for Dashboards, IDEs and Developer Tools by Matheus Lacerda
 
 > "What does not resolve, does not exist."
 
@@ -40,25 +40,10 @@ The documentation requires strict reading. Choose your regional node matrix belo
 
 ## 03 :: CHANGELOG v1.3.0 (THE EVIDENCE & DISTRIBUTION UPDATE)
 
-### [ADD] :: DISTRIBUTION ENGINE
-- [ADD] Native global CLI scaffolding package distributable via NPM (`npx logical-brutalism`).
-- [ADD] Python-native ecosystem deployment engine distributable via PyPI (`pip install logical-brutalism`).
-- [ADD] Automated environment initializer (`create app`) reducing integration friction for FastAPI and Django.
-
-### [ADD] :: PERFORMANCE & BENCHMARKS
-- [ADD] Real-time Performance Dashboard comparing Logical Brutalism against legacy stacks (Tailwind, Bootstrap, React SPAs).
-- [ADD] Empirical metric instrumentation tracking: Render Time, HTML Payload Size, JS Overhead, and Memory Consumption.
-- [ADD] Stress-test benchmark scenarios utilizing high-volume data streams, large data tables, and rapid API responses under Polars and HTMX.
-
-### [MOD] :: IDENTITY & BRANDING
-- [MOD] Official Brand Manual formalizing the parametric layout matrix, color systems, grid constraints, and visual philosophy.
-- [MOD] Core typography migration: integration of Iosevka font as the absolute identity token for system data, exalting visual density and engineering authority.
-- [MOD] Core visual alignment introducing the Geometric Monolith as the single, unambiguous brand identifier.
-
-### [DEL] :: SCOPE PURGE & DOCUMENTATION CLEANUP
-- [DEL] Complete extraction of high-maintenance, low-return language nodes (Mandarin, German) to mitigate translation degradation.
-- [DEL] Enforced localization lockdown: technical specification limited strictly to English [EN] and Brazilian Portuguese [PT-BR].
-- [DEL] Elimination of purely declarative manifestos, shifting the repository focus from speculative aesthetics to verifiable software proof.
+- [MOD] Core typography migration: Replaced Inter/JetBrains Mono with the Iosevka family (Term/Aile) to maximize data density and parametric consistency across IDEs and documentation.
+- [MOD] CLI architecture: Overhauled Python payload (lb_init.py) from static HTML to a Parametric Jinja2 Master Template for native Django/FastAPI scaffolding.
+- [MOD] Canonical phrasing and SEO alignment: Central thesis unified globally as "What does not resolve, does not exist."
+- [DEL] Deprecated legacy templates/ directory from the repository to enforce CLI-only structural injection and eliminate architectural noise.
 
 ---
 MISSION STATUS: PROVEN & DISTRIBUTED.
