@@ -20,36 +20,48 @@ The system is distributed globally for immediate adoption.
 **NPM (Frontend/Tailwind):**
 ```bash
 npx logical-brutalism
+
 ```
 
 **PyPI (Python/Django/FastAPI):**
+
 ```bash
 pip install logical-brutalism
 logical-brutalism
+
 ```
 
 ## 02 :: ARCHITECTURE AND LOCALIZATION
 
-This repository holds the absolute geometric and mathematical constants of the Logical Brutalism design system. 
+This repository holds the absolute geometric and mathematical constants of the Logical Brutalism design system.
 The documentation requires strict reading. Choose your regional node matrix below:
 
-*   **[ [EN] Official English Registry ](docs/core.md)**
-*   **[ [PT] Brazilian Portuguese Root ](docs/pt/README.md)**
+* **[ [EN] Official English Registry ](https://www.google.com/search?q=docs/core.md)**
+* **[ [PT] Brazilian Portuguese Root ](https://www.google.com/search?q=docs/pt/README.md)**
 
 *Note: The English structural tree is located under `/docs/` as the default fallback. Ensure adherence to the mandatory components: 3 Axioms, 5 Pillars, and 7 Generative Principles.*
 
-## 03 :: CHANGELOG v1.3.0 (THE EVIDENCE & DISTRIBUTION UPDATE)
+## 03 :: CHANGELOG v1.3.0 (THE EMPIRICAL EVIDENCE UPDATE)
 
-- [MOD] Core typography migration: Replaced Inter/JetBrains Mono with the Iosevka family (Term/Aile) to maximize data density and parametric consistency across IDEs and documentation.
-- [MOD] CLI architecture: Overhauled Python payload (lb_init.py) from static HTML to a Parametric Jinja2 Master Template for native Django/FastAPI scaffolding.
-- [MOD] Canonical phrasing and SEO alignment: Central thesis unified globally as "What does not resolve, does not exist."
-- [DEL] Deprecated legacy templates/ directory from the repository to enforce CLI-only structural injection and eliminate architectural noise.
+* **[NEW] Empirical Benchmarks Matrix:** Published a comprehensive laboratory comparing Logical Brutalism (Server-Driven UI) against Virtual DOM SPAs (React, Ant Design, Material) under high-frequency B2B stress. The data empirically proves our superiority in P95 latency and memory footprint.
+* 📊 **Live Data & Dashboard:** [matheuslacerda.dev/logical-benchs](https://matheuslacerda.dev/logical-benchs/)
+* 🔬 **Benchmark Repository:** [logical-brutalism-benchmarks](https://github.com/matheuslacerda-dev/logical-brutalism-benchmarks)
+
+
 
 ---
+
 MISSION STATUS: PROVEN & DISTRIBUTED.
 
-## 04 :: EXECUTION MANIFESTO
+## 04 :: OFFICIAL ECOSYSTEM
 
-The construction process is strictly deliverable-based. Development occurs entirely within the parametric matrix defined in the core nodes. 
+* 📖 **Documentation:** [matheuslacerda.dev/logical-brutalism](https://matheuslacerda.dev/logical-brutalism/)
+* ⚙️ **Core Engine Repo:** [matheuslacerda-dev/logical-brutalism](https://github.com/matheuslacerda-dev/logical-brutalism/)
+* 📊 **Live Benchmarks Dashboard:** [matheuslacerda.dev/logical-benchs](https://matheuslacerda.dev/logical-benchs/)
+* 🔬 **Benchmarks Source Code:** [matheuslacerda-dev/logical-brutalism-benchmarks](https://github.com/matheuslacerda-dev/logical-brutalism-benchmarks)
+
+## 05 :: EXECUTION MANIFESTO
+
+The construction process is strictly deliverable-based. Development occurs entirely within the parametric matrix defined in the core nodes.
 
 [>] **[READ THE FULL EXECUTION MANIFESTO HERE](docs/core.md)**
