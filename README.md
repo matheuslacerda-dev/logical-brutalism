@@ -36,8 +36,8 @@ logical-brutalism
 This repository holds the absolute geometric and mathematical constants of the Logical Brutalism design system.
 The documentation requires strict reading. Choose your regional node matrix below:
 
-* **[ [EN] Official English Registry ](https://www.google.com/search?q=docs/core.md)**
-* **[ [PT] Brazilian Portuguese Root ](https://www.google.com/search?q=docs/pt/README.md)**
+* **[ [EN] Official English Registry ](docs/core.md)**
+* **[ [PT] Brazilian Portuguese Root ](docs/pt/README.md)**
 
 *Note: The English structural tree is located under `/docs/` as the default fallback. Ensure adherence to the mandatory components: 3 Axioms, 5 Pillars, and 7 Generative Principles.*
 
