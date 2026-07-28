@@ -1,18 +1,29 @@
 #!/usr/bin/env python3
 """
-LOGICAL BRUTALISM :: CLI INITIALIZER
-Parametric Engine Deployment for Backend Infrastructure (Django/FastAPI).
+LOGICAL BRUTALISM :: CLI ENGINE
+Parametric Engine Deployment for Backend Infrastructure.
+
+Usage:
+  logical-brutalism init django <project_name>   Scaffold a Django project under LB governance.
+  logical-brutalism deploy                       Legacy: copy core CSS/JS and inject base.html.
+
 Author: Matheus Lacerda Ferreira
 License: MIT
 """
 
+import argparse
 import os
 import sys
 
+# ---------------------------------------------------------------------------
 # ANSI CORE COLORS
-C_AMBER = "[38;5;214m"  # Approx #FFB000 (Oxidized Amber)
-C_VOID = "[0m"
+# ---------------------------------------------------------------------------
+C_AMBER = "\033[38;5;214m"
+C_VOID = "\033[0m"
 
+# ---------------------------------------------------------------------------
+# BRAND IDENTITY
+# ---------------------------------------------------------------------------
 ASCII_ART = rf"""{C_AMBER}
   _      ____   _____ _____ _____          _      
  | |    / __ \ / ____|_   _/ ____|   /\   | |     
@@ -31,6 +42,9 @@ ASCII_ART = rf"""{C_AMBER}
  :: WHAT DOES NOT RESOLVE, DOES NOT EXIST. ::{C_VOID}
 """
 
+# ---------------------------------------------------------------------------
+# LEGACY DEPLOY PAYLOAD (backward compatibility)
+# ---------------------------------------------------------------------------
 HTML_PAYLOAD = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +59,7 @@ HTML_PAYLOAD = """<!DOCTYPE html>
 
   <!-- Parasitic Dependencies (HTMX/Alpine) -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
 
   <!-- Central Visual Matrix -->
   <link rel="stylesheet" href="/static/css/logical-brutalism.css">
@@ -104,8 +118,11 @@ HTML_PAYLOAD = """<!DOCTYPE html>
 """
 
 
-def main():
-    print(ASCII_ART)
+# ---------------------------------------------------------------------------
+# LEGACY DEPLOY COMMAND
+# ---------------------------------------------------------------------------
+def _cmd_deploy(_args):
+    """Execute the legacy deployment protocol (copy CSS/JS + inject base.html)."""
     print(f"{C_AMBER}[STARTING DEPLOYMENT PROTOCOL]{C_VOID}\n")
 
     # Dynamic paths based on installer directory (OS-independent distribution)
@@ -160,6 +177,173 @@ def main():
     print(
         "The B2B infrastructure has been toggled. Returning to primary shell...\n"
     )
+
+
+# ---------------------------------------------------------------------------
+# INIT DJANGO COMMAND
+# ---------------------------------------------------------------------------
+def _cmd_init_django(args):
+    """Route to the init django pipeline."""
+    from cli.commands.init_django import run
+
+    run(args.project_name)
+
+
+# ---------------------------------------------------------------------------
+# INIT FASTAPI COMMAND
+# ---------------------------------------------------------------------------
+def _cmd_init_fastapi(args):
+    """Route to the init fastapi pipeline."""
+    from cli.commands.init_fastapi import run_pipeline
+
+    run_pipeline(args.project_name)
+
+
+# ---------------------------------------------------------------------------
+# INIT VITE-STATIC COMMAND
+# ---------------------------------------------------------------------------
+def _cmd_init_vite_static(args):
+    """Route to the init vite-static pipeline."""
+    from cli.commands.init_vite_static import run_pipeline
+
+    run_pipeline(args.project_name)
+
+
+# ---------------------------------------------------------------------------
+# INIT EXPRESS-HTMX COMMAND
+# ---------------------------------------------------------------------------
+def _cmd_init_express_htmx(args):
+    """Route to the init express-htmx pipeline."""
+    from cli.commands.init_express_htmx import run_pipeline
+
+    run_pipeline(args.project_name)
+
+
+# ---------------------------------------------------------------------------
+# DASH COMMAND
+# ---------------------------------------------------------------------------
+def _cmd_dash(args):
+    """Route to the dash pipeline."""
+    from cli.commands.init_dashboard import run_pipeline
+
+    run_pipeline()
+
+
+# ---------------------------------------------------------------------------
+# ARGPARSE CONFIGURATION
+# ---------------------------------------------------------------------------
+def _build_parser():
+    """Construct the CLI argument parser with subcommands."""
+    parser = argparse.ArgumentParser(
+        prog="logical-brutalism",
+        description="Logical Brutalism :: Parametric Engine Deployment CLI",
+        epilog="\"What does not resolve, does not exist.\"",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+
+    subparsers = parser.add_subparsers(
+        dest="command",
+        title="commands",
+        description="Available deployment commands:",
+    )
+
+    # -- deploy (legacy) --
+    deploy_parser = subparsers.add_parser(
+        "deploy",
+        help="Legacy: copy core CSS/JS to static/ and inject base.html.",
+    )
+    deploy_parser.set_defaults(func=_cmd_deploy)
+
+    # -- dash --
+    dash_parser = subparsers.add_parser(
+        "dash",
+        help="Scaffold a standalone B2B high-density control panel HTML template in the current directory.",
+    )
+    dash_parser.set_defaults(func=_cmd_dash)
+
+    # -- init --
+    init_parser = subparsers.add_parser(
+        "init",
+        help="Initialize a new project under Logical Brutalism governance.",
+    )
+
+    init_subparsers = init_parser.add_subparsers(
+        dest="framework",
+        title="frameworks",
+        description="Available framework scaffolds:",
+    )
+
+    # -- init django --
+    init_django_parser = init_subparsers.add_parser(
+        "django",
+        help="Scaffold a Django project with uv, django-htmx, and TailwindCSS Standalone CLI.",
+    )
+    init_django_parser.add_argument(
+        "project_name",
+        help="Name of the Django project directory to create.",
+    )
+    init_django_parser.set_defaults(func=_cmd_init_django)
+
+    # -- init fastapi --
+    init_fastapi_parser = init_subparsers.add_parser(
+        "fastapi",
+        help="Scaffold a FastAPI project with uvicorn, Polars, HTMX, and TailwindCSS Standalone CLI.",
+    )
+    init_fastapi_parser.add_argument(
+        "project_name",
+        help="Name of the FastAPI project directory to create.",
+    )
+    init_fastapi_parser.set_defaults(func=_cmd_init_fastapi)
+
+    # -- init vite-static --
+    init_vite_parser = init_subparsers.add_parser(
+        "vite-static",
+        help="Scaffold a vanilla Vite project with HTMX, Alpine, and TailwindCSS.",
+    )
+    init_vite_parser.add_argument(
+        "project_name",
+        help="Name of the Vite project directory to create.",
+    )
+    init_vite_parser.set_defaults(func=_cmd_init_vite_static)
+
+    # -- init express-htmx --
+    init_express_parser = init_subparsers.add_parser(
+        "express-htmx",
+        help="Scaffold an Express.js project with EJS, HTMX, Alpine, and TailwindCSS.",
+    )
+    init_express_parser.add_argument(
+        "project_name",
+        help="Name of the Express project directory to create.",
+    )
+    init_express_parser.set_defaults(func=_cmd_init_express_htmx)
+
+
+
+    return parser
+
+
+# ---------------------------------------------------------------------------
+# ENTRY POINT
+# ---------------------------------------------------------------------------
+def main():
+    """CLI entry point. Dispatches to subcommands via argparse."""
+    print(ASCII_ART)
+
+    parser = _build_parser()
+    args = parser.parse_args()
+
+    # If no subcommand provided, print help
+    if not hasattr(args, "func"):
+        parser.print_help()
+        sys.exit(0)
+
+    # If 'init' was provided but no framework specified
+    if args.command == "init" and not getattr(args, "framework", None):
+        parser.parse_args(["init", "--help"])
+        sys.exit(0)
+
+    # Dispatch to the resolved command handler
+    args.func(args)
 
 
 if __name__ == "__main__":

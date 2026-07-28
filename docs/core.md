@@ -1,4 +1,4 @@
-# Logical Brutalism v1.3.0 :: Official Documentation
+# Logical Brutalism v1.4.0 :: Official Documentation
 
 > "What does not resolve, does not exist."
 

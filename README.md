@@ -1,67 +1,120 @@
-# Logical Brutalism: A Design System for Dashboards, IDEs and Developer Tools
+# Logical Brutalism: High-Density Scaffolding Engine & Design System
 
 > "What does not resolve, does not exist."
 
 **LICENSE:** MIT LICENSE (Copyright 2026)  
-**STATUS:** LIVING DOCUMENT  
+**STATUS:** ACTIVE / LIVING ARCHITECTURE  
+**VERSION:** 1.4.0
 
 ---
 
 ## 00 :: CENTRAL THESIS
 
-Logical Brutalism was not born from aesthetic conjectures. Its origin lies in the necessity to secure operability within unstable environments. The non-negotiable metric is the mathematical and structural logic of an interface. If a function `X` is triggered, the feedback and consequence `Y` must be inevitable and immediate. This is not a frivolous design choice; it is digital survival architecture.
+Logical Brutalism is an open-source architectural manifesto and scaffolding engine built for high-density B2B interfaces, dashboards, and developer tools. It operates under a non-negotiable metric: absolute structural logic and immediate execution.
 
-Just as structuralist architecture exposes raw materials and refuses decorative coating, Logical Brutalism forces interface engineering to expose its intrinsic logic. Any visual layer that contradicts or masks function is eliminated. There is no ornament devoid of information.
+Just as structuralist architecture exposes raw materials and refuses decorative coating, Logical Brutalism forces interface engineering to expose its intrinsic logic. We eliminate JavaScript bloat, zero-out runtime CSS, bypass the main thread through Server-Driven UI (HTMX/Alpine), and strictly enforce 90-degree angles with zero visual friction.
 
-## 01 :: QUICK START
+---
 
-The system is distributed globally for immediate adoption.
+## 01 :: CLI SCAFFOLDING ENGINE
 
-**NPM (Frontend/Tailwind):**
-```bash
-npx logical-brutalism
+The CLI operates as an instantaneous scaffolding machine in $O(1)$ time, injecting pre-configured, zero-bloat project structures directly into your workspace.
 
-```
-
-**PyPI (Python/Django/FastAPI):**
+### 🐍 Python Environments (PyPI)
+*Strict Requirement:* **`uv` package manager must be installed in system PATH**. The engine fails immediately if `uv` is absent—we do not compromise on execution speed.
 
 ```bash
+# Install CLI globally
 pip install logical-brutalism
-logical-brutalism
+
+# Scaffold a Django project (Cookiecutter layout + django-htmx + Tailwind v3.4.x)
+logical-brutalism init django <project_name>
+
+# Scaffold a FastAPI project (High-density structure + Polars + Jinja2 + Server-Driven UI)
+logical-brutalism init fastapi <project_name>
 
 ```
 
-## 02 :: ARCHITECTURE AND LOCALIZATION
+### 📦 Node.js / Frontend Environments (NPM)
 
-This repository holds the absolute geometric and mathematical constants of the Logical Brutalism design system.
-The documentation requires strict reading. Choose your regional node matrix below:
+```bash
+# Vite Static (Vanilla Vite + HTMX + Alpine.js + Strict Tailwind Reset)
+npx logical-brutalism init vite-static <project_name>
 
-* **[ [EN] Official English Registry ](docs/core.md)**
-* **[ [PT] Brazilian Portuguese Root ](docs/pt/README.md)**
+# Express HTMX (Express.js + EJS Server-Driven UI + Tailwind v3.4.x)
+npx logical-brutalism init express-htmx <project_name>
 
-*Note: The English structural tree is located under `/docs/` as the default fallback. Ensure adherence to the mandatory components: 3 Axioms, 5 Pillars, and 7 Generative Principles.*
+```
 
-## 03 :: CHANGELOG v1.3.0 (THE EMPIRICAL EVIDENCE UPDATE)
+---
 
-* **[NEW] Empirical Benchmarks Matrix:** Published a comprehensive laboratory comparing Logical Brutalism (Server-Driven UI) against Virtual DOM SPAs (React, Ant Design, Material) under high-frequency B2B stress. The data empirically proves our superiority in P95 latency and memory footprint.
-* 📊 **Live Data & Dashboard:** [matheuslacerda.dev/logical-benchs](https://matheuslacerda.dev/logical-benchs/)
-* 🔬 **Benchmark Repository:** [logical-brutalism-benchmarks](https://github.com/matheuslacerda-dev/logical-brutalism-benchmarks)
+## 02 :: PRESET ARCHITECTURE MATRIX
+
+| Command | Stack / Dependencies | Layout / Architecture | CSS Engine |
+| --- | --- | --- | --- |
+| **`init django`** | Python, `django`, `django-htmx`, `uv` | Cookiecutter layout (`config/` module) | Standalone Tailwind v3.4.x |
+| **`init fastapi`** | Python, `fastapi`, `jinja2`, `polars` | `/routers`, `/templates`, `/core` | CDN Engine + Hardened Reset |
+| **`init vite-static`** | Node, Vite, `htmx.org`, `alpinejs` | Single Page / Static Partial Pipeline | Tailwind v3.4.x (Locked) |
+| **`init express-htmx`** | Node, Express.js, EJS, `htmx.org` | `/views`, `/routes`, `/public` | Tailwind v3.4.x Build Pipeline |
+| **`dash`** *(NEW)* | HTML5, Alpine.js, HTMX, Tailwind | Single `dashboard.html` file | CDN Engine + Locked Overrides |
+
+---
+
+## 03 :: THE B2B KILLER FEATURE: `dash`
+
+Introduced in v1.4.0, the `dash` command generates a standalone, production-ready B2B high-density control panel template directly in your current directory.
+
+```bash
+# Generate a complete control panel interface in O(1) time
+logical-brutalism dash
+
+```
+
+* **Features included:** KPI grid with variance metrics, a high-density transaction ledger (table) configured for HTMX pagination, and a simulated live system log stream. Zero setup required.
+
+---
+
+## 04 :: HARD SYSTEM CONSTRAINTS
+
+All presets generated by the CLI strictly enforce the three core axioms of the design system:
+
+1. **Zero Rounded Corners:** `borderRadius` is locked to `{ none: '0' }` across all Tailwind configurations.
+2. **Zero Animation Friction:** All transitions, animations, and decorative `box-shadow` utilities are stripped from the configuration tree.
+3. **Determined Color Hierarchy:**
+* `#0A0A0A` (Void / Background)
+* `#FFB000` (P3 Amber Phosphor / Critical Action - Single instance per view)
+* `#888888` (Body Text / Fatigue Prevention)
 
 
 
 ---
 
-MISSION STATUS: PROVEN & DISTRIBUTED.
+## 05 :: ARCHITECTURE AND LOCALIZATION
 
-## 04 :: OFFICIAL ECOSYSTEM
+This repository holds the absolute geometric and mathematical constants of the Logical Brutalism design system.
+Choose your regional node matrix below:
 
-* 📖 **Documentation:** [matheuslacerda.dev/logical-brutalism](https://matheuslacerda.dev/logical-brutalism/)
+* **[ [EN] Official English Registry ](https://www.google.com/search?q=docs/core.md)**
+* **[ [PT] Brazilian Portuguese Root ](https://www.google.com/search?q=docs/pt/README.md)**
+
+---
+
+## 06 :: EMPIRICAL EVIDENCE & BENCHMARKS
+
+* **Empirical Benchmarks Matrix:** A comprehensive laboratory comparing Logical Brutalism (Server-Driven UI) against Virtual DOM SPAs (React, Ant Design, Material) under high-frequency B2B stress.
+* 📊 **Live Data & Dashboard:** [matheuslacerda.dev/logical-benchs](https://www.google.com/search?q=https://matheuslacerda.dev/logical-benchs/)
+* 🔬 **Benchmark Repository:** [logical-brutalism-benchmarks](https://www.google.com/search?q=https://github.com/matheuslacerda-dev/logical-brutalism-benchmarks)
+
+---
+
+## 07 :: OFFICIAL ECOSYSTEM
+
+* 📖 **Documentation:** [matheuslacerda.dev/logical-brutalism](https://www.google.com/search?q=https://matheuslacerda.dev/logical-brutalism/)
 * ⚙️ **Core Engine Repo:** [matheuslacerda-dev/logical-brutalism](https://github.com/matheuslacerda-dev/logical-brutalism/)
-* 📊 **Live Benchmarks Dashboard:** [matheuslacerda.dev/logical-benchs](https://matheuslacerda.dev/logical-benchs/)
-* 🔬 **Benchmarks Source Code:** [matheuslacerda-dev/logical-brutalism-benchmarks](https://github.com/matheuslacerda-dev/logical-brutalism-benchmarks)
+* 📦 **PyPI Package:** [pypi.org/project/logical-brutalism](https://www.google.com/search?q=https://pypi.org/project/logical-brutalism/)
+* 📦 **NPM Package:** [npmjs.com/package/logical-brutalism](https://www.google.com/search?q=https://www.npmjs.com/package/logical-brutalism)
 
-## 05 :: EXECUTION MANIFESTO
+---
 
-The construction process is strictly deliverable-based. Development occurs entirely within the parametric matrix defined in the core nodes.
+MISSION STATUS: PROVEN, SCAFFOLDED & DISTRIBUTED.
 
-[>] **[READ THE FULL EXECUTION MANIFESTO HERE](docs/core.md)**
