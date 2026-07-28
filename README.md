@@ -1,4 +1,4 @@
-# Logical Brutalism: A Design System for Dashboards, IDEs and Developer Tools by Matheus Lacerda
+# Logical Brutalism: A Design System for Dashboards, IDEs and Developer Tools
 
 > "What does not resolve, does not exist."
 
